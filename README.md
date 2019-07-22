@@ -1,4 +1,18 @@
 # vox
-Function that plots the PCA of a voxel array, 
+## Functions that read, plot and anaslise voxels arrayes
 
-and additional scripts for loading in matlab files 
+### In Vox2...
+
+*mat2array:* 
+
+Reads in matlab files as arrays
+
+*voxel_xyz:*
+
+Converts a voxel array into a n x 3 xyz coordinate array
+
+*vox_plot*
+
+Plots multiple surfaces meshes of voxel on a user defined 3d plot
+
+
