@@ -11,7 +11,7 @@ Reads in matlab files as arrays
 
 Converts a voxel array into a n x 3 xyz coordinate array
 
-*vox_plot*
+*vox_plot:*
 
 Plots multiple surfaces meshes of voxel on a user defined 3d plot
 
