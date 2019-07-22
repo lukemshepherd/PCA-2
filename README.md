@@ -1,5 +1,5 @@
 # vox
-## Functions that read, plot and anaslise voxels arrayes
+## Functions that read, plot and anaslise voxels arrays
 
 ### In Vox2...
 
