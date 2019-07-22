@@ -37,7 +37,7 @@ def bone_pca_dev(bone):
     return mean_x, mean_y, mean_z, eig_val, eig_vec
 
 
-def vox_plot(xlim,ylim,zlim,*args,):
+def vox_plot(xlim,ylim,zlim,*args):
     """plots voxel array as surface mesh can take n bones"""
     # sets colour map
     color=iter(cm.viridis(np.linspace(0,1,len(args))))
@@ -60,7 +60,7 @@ def vox_plot(xlim,ylim,zlim,*args,):
     return plt.show(fig)
 
 
-def vox_plot_dev(xlim,ylim,zlim,*args,):
+def vox_plot_dev(xlim,ylim,zlim,*args):
     """plots voxel array as surface mesh can take n bones and plot PCA"""
     # sets colour map
     color=iter(cm.viridis(np.linspace(0,1,len(args))))
