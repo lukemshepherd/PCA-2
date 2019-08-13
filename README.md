@@ -2,9 +2,7 @@
 ## Functions that read, plot and analyse voxels arrays
 
 ### stl_stack:
-stacks .png images into voxel array
-
-https://github.com/cpederkoff/stl-to-voxel#stl-to-voxel
+stacks .png images into voxel array from https://github.com/cpederkoff/stl-to-voxel#stl-to-voxel
 
 ### mat2array:
 Reads in matlab files as arrays
