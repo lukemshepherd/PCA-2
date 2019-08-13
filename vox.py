@@ -58,7 +58,13 @@ def bone_pca(bone):
 
 
 def vox_plot(*args, plot_PCA = True, plot_inv = True):
-    """plots voxel array; can take n bones and plot PCA vectors"""
+    """plots voxel array; can take n bones and plot PCA vectors
+    
+        plot_PCA = displays the eigenvectors of each voxel object on plot
+        
+        plot_inv = displays the inverse of eigenvectors on plot
+        
+    """
 
     for n, bone in enumerate(args):
         #random colour tuple
