@@ -5,6 +5,7 @@ import scipy.io
 from skimage import measure
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.pyplot import cm
+import mayavi.mlab
 
 def mat2array (file):
     """loads a .mat file and returns a 3d array"""
@@ -37,7 +38,7 @@ def bone_pca_dev(bone):
     return mean_x, mean_y, mean_z, eig_val, eig_vec
 
 
-def vox_plot(xlim,ylim,zlim,*args):
+def vox_plot_surf(xlim,ylim,zlim,*args):
     """plots voxel array as surface mesh can take n bones"""
     # sets colour map
     color=iter(cm.viridis(np.linspace(0,1,len(args))))
@@ -100,3 +101,48 @@ def vox_plot_dev(xlim,ylim,zlim,*args):
         ax.quiver(x,y,z,u2,v2,w2, color ='g')
 
     return plt.show(fig)
+
+def vox_plot(*args):
+    """plots voxel array; can take n bones and plot PCA vectors"""
+
+    for bone in (args):
+        #random colour tuple
+        rand_colour = tuple(np.random.uniform(0.0,1.0,3))
+        
+        mayavi.mlab.points3d(voxel_xyz(bone)[:,0],
+                             voxel_xyz(bone)[:,1],
+                             voxel_xyz(bone)[:,2],
+                     mode="cube",
+                     color= rand_colour,
+                     scale_factor=1)
+
+        #PCA on bones
+        mean_x, mean_y, mean_z, eig_val, eig_vec = bone_pca(bone)
+        x,y,z = [mean_x,mean_y,mean_z]
+
+        #plot eignevectors
+        u0,v0,w0 = eig_vec[:,0].T * 100
+        #u0_inv,v0_inv,w0_inv = u0 -1 ,v0 -1, w0-1
+
+        u1,v1,w1 = eig_vec[:,1].T * 100
+        #u1_inv,v1_inv,w1_inv = u1 -1 ,v1 -1, w1-1
+
+        u2,v2,w2 = eig_vec[:,2].T * 100
+        #u2_inv,v2_inv,w2_inv = u2 -1 ,v2 -1, w2-1
+
+        mayavi.mlab.quiver3d(x,y,z,u0,v0,w0, 
+                             line_width =6,
+                             scale_factor=1,
+                             color= rand_colour)
+        
+        mayavi.mlab.quiver3d(x,y,z,u1,v1,w1, 
+                             line_width =6,
+                             scale_factor=1,
+                             color=rand_colour)
+        
+        mayavi.mlab.quiver3d(x,y,z,u2,v2,w2, 
+                             line_width =6,
+                             scale_factor=1, 
+                             color=rand_colour)
+        
+    return mayavi.mlab.show()
