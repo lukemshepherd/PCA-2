@@ -1,5 +1,5 @@
 # vox
-## Functions that read, plot and anaslise voxels arrays
+## Functions that read, plot and analyse voxels arrays
 
 ### stl_stack:
 stacks .png images into voxel array
