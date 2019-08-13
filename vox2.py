@@ -102,10 +102,10 @@ def vox_plot_dev(xlim,ylim,zlim,*args):
 
     return plt.show(fig)
 
-def vox_plot(*args):
+def vox_plot(*args, plot_PCA = True):
     """plots voxel array; can take n bones and plot PCA vectors"""
 
-    for bone in (args):
+    for n, bone in enumerate(args):
         #random colour tuple
         rand_colour = tuple(np.random.uniform(0.0,1.0,3))
         
@@ -129,20 +129,23 @@ def vox_plot(*args):
 
         u2,v2,w2 = eig_vec[:,2].T * 100
         #u2_inv,v2_inv,w2_inv = u2 -1 ,v2 -1, w2-1
+        
+        print(f"{n}th bone PCA vectors: \n {eig_vec} \n")
+        
+        if plot_PCA == True:
+            mayavi.mlab.quiver3d(x,y,z,u0,v0,w0, 
+                                 line_width =6,
+                                 scale_factor=1,
+                                 color= rand_colour)
 
-        mayavi.mlab.quiver3d(x,y,z,u0,v0,w0, 
-                             line_width =6,
-                             scale_factor=1,
-                             color= rand_colour)
+            mayavi.mlab.quiver3d(x,y,z,u1,v1,w1, 
+                                 line_width =6,
+                                 scale_factor=1,
+                                 color=rand_colour)
+
+            mayavi.mlab.quiver3d(x,y,z,u2,v2,w2, 
+                                 line_width =6,
+                                 scale_factor=1, 
+                                 color=rand_colour)
         
-        mayavi.mlab.quiver3d(x,y,z,u1,v1,w1, 
-                             line_width =6,
-                             scale_factor=1,
-                             color=rand_colour)
-        
-        mayavi.mlab.quiver3d(x,y,z,u2,v2,w2, 
-                             line_width =6,
-                             scale_factor=1, 
-                             color=rand_colour)
-        
-    return mayavi.mlab.show()
+    return mayavi.mlab.show() 
