@@ -102,9 +102,9 @@ def vox_plot_dev(xlim,ylim,zlim,*args):
 
     return plt.show(fig)
 
-def vox_plot(*args, plot_PCA = True):
+def vox_plot(*args, plot_PCA = True, plot_inv = True):
     """plots voxel array; can take n bones and plot PCA vectors"""
-
+    
     for n, bone in enumerate(args):
         #random colour tuple
         rand_colour = tuple(np.random.uniform(0.0,1.0,3))
@@ -122,15 +122,17 @@ def vox_plot(*args, plot_PCA = True):
 
         #plot eignevectors
         u0,v0,w0 = eig_vec[:,0].T * 100
-        #u0_inv,v0_inv,w0_inv = u0 -1 ,v0 -1, w0-1
+        u0_inv,v0_inv,w0_inv = u0 * -1 ,v0 * -1, w0 * -1
 
         u1,v1,w1 = eig_vec[:,1].T * 100
-        #u1_inv,v1_inv,w1_inv = u1 -1 ,v1 -1, w1-1
+        u1_inv,v1_inv,w1_inv = u1 * -1 ,v1 * -1, w1 * -1
 
         u2,v2,w2 = eig_vec[:,2].T * 100
-        #u2_inv,v2_inv,w2_inv = u2 -1 ,v2 -1, w2-1
+        u2_inv,v2_inv,w2_inv = u2 * -1 ,v2 * -1, w2 * -1
         
-        print(f"{n}th bone PCA vectors: \n {eig_vec} \n")
+        vectors.append(eig_vec)
+        
+        print(f"{n}th bone PCA vectors: \n {eig_vec} \n ")
         
         if plot_PCA == True:
             mayavi.mlab.quiver3d(x,y,z,u0,v0,w0, 
@@ -147,5 +149,21 @@ def vox_plot(*args, plot_PCA = True):
                                  line_width =6,
                                  scale_factor=1, 
                                  color=rand_colour)
-        
-    return mayavi.mlab.show() 
+            
+        if plot_inv == True:
+            mayavi.mlab.quiver3d(x,y,z,u0_inv,v0_inv,w0_inv, 
+                                 line_width =6,
+                                 scale_factor=1,
+                                 color= rand_colour)
+
+            mayavi.mlab.quiver3d(x,y,z,u1_inv,v1_inv,w1_inv, 
+                                 line_width =6,
+                                 scale_factor=1,
+                                 color=rand_colour)
+
+            mayavi.mlab.quiver3d(x,y,z,u2_inv,v2_inv,w2_inv, 
+                                 line_width =6,
+                                 scale_factor=1, 
+                                 color=rand_colour)
+
+    return mayavi.mlab.show()
