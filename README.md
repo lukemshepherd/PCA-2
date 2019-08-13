@@ -1,18 +1,20 @@
 # vox
 ## Functions that read, plot and anaslise voxels arrays
 
-### In Vox2...
+### stl_stack:
+stacks .png images into voxel array
 
-*mat2array:* 
+https://github.com/cpederkoff/stl-to-voxel#stl-to-voxel
 
+### mat2array:
 Reads in matlab files as arrays
 
-*voxel_xyz:*
-
+### voxel_xyz:
 Converts a voxel array into a n x 3 xyz coordinate array
 
-*vox_plot:*
+### bone_pca:
+Performs PCA on 3D voxel 
 
-Plots multiple surfaces meshes of voxel on a user defined 3d plot
-
+### vox_plot:
+Plots multiple voxel plots with PCA vectors 
 
