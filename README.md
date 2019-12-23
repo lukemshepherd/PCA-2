@@ -12,7 +12,7 @@ Activate desired enviroment
 Has been written (and runs) on both Windows 10 and MacOS
 
 ## Python
-This was written on python 3.7 (although 3.6 *should* work- although not tested) python 2 versions won't work due to the use of f strings
+This was written on python 3.6.7, python 2 versions won't work due to the use of f strings
 
 ## mayavi
 This is the 3d plotting libray used for rendering the plots. Mayvai will launch a qt window to display the plot- meaning that you will need an X serve session for the plots to load. If you want to plot things inline you will need to use jupyter notebooks, not jupyter lab.
