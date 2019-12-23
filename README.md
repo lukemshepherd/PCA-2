@@ -1,18 +1,48 @@
-# vox
-## Functions that read, plot and analyse voxels arrays
+# Vox
+# Libaries
+See environment.yml 
 
-### stl_stack:
-stacks .png images into voxel array from https://github.com/cpederkoff/stl-to-voxel#stl-to-voxel
+Activate desired enviroment
 
-### mat2array:
-Reads in matlab files as arrays
+    conda activate myenv
+  
+    conda env update -f environment.yml 
 
-### voxel_xyz:
-Converts a voxel array into a n x 3 xyz coordinate array
+## OS
+Has been written (and runs) on both Windows 10 and MacOS
 
-### bone_pca:
-Performs PCA on 3D voxel 
+## Python
+This was written on python 3.7 (although 3.6 *should* work- although not tested) python 2 versions won't work due to the use of f strings
 
-### vox_plot:
-Plots multiple voxel plots with PCA vectors 
+## mayavi
+This is the 3d plotting libray used for rendering the plots. Mayvai will launch a qt window to display the plot- meaning that you will need an X serve session for the plots to load. If you want to plot things inline you will need to use jupyter notebooks, not jupyter lab.
 
+### mayavi install
+https://docs.enthought.com/mayavi/mayavi/installation.html#installing-with-conda-forge
+
+    conda install vtk
+    conda install qyqt5
+    
+    conda install mayavi
+    
+## pyquaternion
+http://kieranwynn.github.io/pyquaternion/
+
+    pip install pyquaternion
+    
+## Optional: inline 3d plotting
+http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebooks
+
+
+# How to use:
+
+### 1. Set the root directory for the matlab file loader
+
+### 2. Load the data that you want to use
+
+### 3. Contstruct the bone classes
+
+### 4. Change xyz coordiates so `f1` is in `f2` position
+
+### 5. Rotate bone using PCs
+### 6. Plotting the rotation
