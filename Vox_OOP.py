@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 import scipy.io
 from mayavi import mlab
-from pyquaternion import Quaternion
+#from pyquaternion import Quaternion
 
 
 # %%
@@ -29,7 +29,7 @@ from IPython.core.debugger import set_trace
 
 
 # %%
-import quaternion
+import quaternion as quat
 
 # %% [markdown]
 # # Libraries
@@ -578,56 +578,61 @@ def rotation(bone):
     return bone
 
 
+
+
+#%%
+
+def quaternion_rot(v, c_axis,theta):
+
+    rot_axis = np.array([0.] + c_axis)
+    axis_angle = (theta*0.5) * rot_axis/np.linalg.norm(rot_axis)
+
+    vec = quat.quaternion(*v)
+    # quaternion from exp of axis angle
+    qlog = quat.quaternion(*axis_angle)
+    q = np.exp(qlog)
+
+    #double cover quaternion rotation
+    v_prime = q * vec * np.conjugate(q)
+
+    return v_prime.imag
+
+
 # %%
 def rotation2(bone):
     
-    # init tfm_PCn
+    # init tfm_PCn for the class 
     for n in range(1,4):
         setattr(bone.f1,f'tfm_PC{n}',getattr(bone.f1,f'PC{n}'))
         
     # for each pairwise    
-    for n in range(1,4):
+    for n in range(2,4):
     
-        f1_PCn = getattr(bone.f1,f'tfm_PC{n}')
-        f2_PCn = getattr(bone.f2,f'PC{n}')
+        f1_PC = getattr(bone.f1,f'tfm_PC{n}')
+        f2_PC = getattr(bone.f2,f'PC{n}')
             
         # angle between PCs
-        theta =  angle(f1_PCn, f2_PCn)
+        theta =  angle(f1_PC, f2_PC)
         
         #cross product between PCs
-        cx,cy,cz = np.cross(f1_PCn, f2_PCn)
+        axis = np.cross(f1_PC, f2_PC) 
 
-        #makes cross product a unit vector
-        cx = cx/math.sqrt(3)
-        cy = cy/math.sqrt(3)
-        cz = cz/math.sqrt(3)
-        
-        #makes quaterion
-        #rotation component
-        s = math.cos(theta)/2
-        
-        #rotation axis
-        i = cx*math.sin(theta)/2
-        j = cy*math.sin(theta)/2
-        k = cz*math.sin(theta)/2
-
-        q = np.quaternion(s,i,j,k)
-        q_inv = np.quaternion(s,-i,-j,-k)
-        
-        #rotate bone
-        bone.f1.tfm_xyz = quaternion.rotate_vectors(q, bone.f1.tfm_xyz)
-        bone.f1.tfm_xyz = quaternion.rotate_vectors(q_inv, bone.f1.tfm_xyz)
-               
-        print(f'PC{n}: \n q ={q} \n q_inv ={q_inv}')
+        bone.f1.tfm_xyz = np.apply_along_axis(
+            func1d=quaternion_rot, 
+            axis=1, 
+            arr= bone.f1.tfm_xyz, 
+            c_axis=axis, 
+            theta=theta)        
 
             #rotate PCs
-        for n in range(1,4):
-            setattr(bone.f1,f'tfm_PC{n}', quaternion.rotate_vectors(q, getattr(bone.f1,f'tfm_PC{n}')))
+        for n in range(2,4):
 
-            setattr(bone.f1,f'tfm_PC{n}', quaternion.rotate_vectors(q_inv, getattr(bone.f1,f'tfm_PC{n}')))
-                          
-    return bone
+            tfm_PC = getattr(bone.f1,f'tfm_PC{n}')
+            
+            tfm_PC = quaternion_rot(v=tfm_PC,c_axis=axis,theta=theta)
 
+            setattr(bone.f1, f'tfm_PC{n}',tfm_PC)
+                    
 # %% [markdown]
 # ## What is the difference with this and the other `bone_plot`?
 # 
@@ -714,4 +719,12 @@ rotation_plot(tibia.phantom)
 # ## Table of Angels
 
 # %%
-df_angles(tibia.phantom,tibia.phantom, name= tibia)
+#df_angles(tibia.phantom,tibia.phantom, name= tibia)
+
+
+# %%
+
+bone = tibia.phantom
+
+getattr(bone.f1,f'PC1')# %%
+
