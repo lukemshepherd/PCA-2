@@ -1,4 +1,4 @@
-# Libraries
+# Dependencies 
 See environment.yml 
 
 Activate desired environment
