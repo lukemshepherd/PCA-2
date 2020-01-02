@@ -606,7 +606,7 @@ def rotation2(bone):
         setattr(bone.f1,f'tfm_PC{n}',getattr(bone.f1,f'PC{n}'))
         
     # for each pairwise    
-    for n in range(2,4):
+    for n in range(1,4):
     
         f1_PC = getattr(bone.f1,f'tfm_PC{n}')
         f2_PC = getattr(bone.f2,f'PC{n}')
@@ -625,7 +625,7 @@ def rotation2(bone):
             theta=theta)        
 
             #rotate PCs
-        for n in range(2,4):
+        for n in range(1,4):
 
             tfm_PC = getattr(bone.f1,f'tfm_PC{n}')
             
