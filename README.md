@@ -20,7 +20,7 @@ This is the 3d plotting library used for rendering the plots. mayvai will launch
 https://docs.enthought.com/mayavi/mayavi/installation.html#installing-with-conda-forge
 
     conda install vtk
-    conda install qyqt5
+    conda install pyqt5
     
     conda install mayavi
     
