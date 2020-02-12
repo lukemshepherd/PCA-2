@@ -7,83 +7,74 @@ from mayavi import mlab
 import quaternion as quat
 from sklearn.decomposition import PCA
 
-
-#%% Classes 
 class bone:
 
     filter_level=0.001
 
     def __init__(self, array):
                
-        """ Performs calculations on the voxel array objects    
-            array 
-            
-            (np.array): binary voxel object)   
-
-            filter_level (int/float): sets the threshold level for 
-            what is considered a voxel. 
-            
-            Everything below filter level is
-            rounded to 0, everything above rounded to 1 (ie voxel)
+        """
+        Performs calculations on the voxel array objects    
+        array (np.array): binary voxel object)      
+        filter_level (int/float): sets the threshold level for 
+        what is considered a voxel. Everything below filter level is
+        rounded to 0, everything above rounded to 1 (ie voxel)
         """ 
         self.array = array
         self.get_xyz()
 
 
-    def get_xyz(self,array):
-        """ Convert 3D voxel array to xyz coordinates.
+    def get_xyz(self):
+        """Convert 3D voxel array to xyz coordinates.
     
-            array (np.array): 3D voxel array  
-                
-            filter_level (int/float): (inherited from `bone` class) sets the threshold level for 
-            what is considered a voxel. Everything below filter level is
-            rounded to 0, everything above rounded to 1 (ie voxel)
-                
-            returns: 
-                np.array( [n x 3]) 
-        """
+        array (np.array): 3D voxel array  
+            
+        filter_level (int/float): (inherited from `bone` class) sets the threshold level for 
+        what is considered a voxel. Everything below filter level is
+        rounded to 0, everything above rounded to 1 (ie voxel)
+            
+        returns: 
+            np.array( [n x 3] )
+    """
         # Everything above filter level is converted to 1
-        array = np.where(array < self.filter_level, 0, 1)
+        filtered_array = np.where(self.array < self.filter_level, 0, 1)
         
         # records coordiates where there is a 1
-        x, y, z = np.where(arr == 1)
+        x, y, z = np.where(filtered_array == 1)
 
         self.xyz = np.array([x, y, z]).T
 
 
     def get_pca(self):
-        """ PCA on the xyz points array
+        """PCA on the xyz points array
     
             xyz(np.array): n x 3 array of xyz coordinates
             
             returns:    self.pc1
                         self.pc2
-                        self.pc3             
-        """
+                        self.pc3 """
          
         pca = PCA(n_components=3, svd_solver='full')
         pca.fit_transform(self.xyz)
 
-        self.pc1 = pca.components_[0]
-        self.pc2 = pca.components_[1]
-        self.pc3 = pca.components_[2]    
+        self.PC1 = pca.components_[0]
+        self.PC2 = pca.components_[1]
+        self.PC3 = pca.components_[2]    
 
 
 
     def get_mean(self):
-        """ The mean of the xyz atriube
+        """The mean of the xyz atriube
     
             returns:
-                tupple (mean_of_x, mean_of_y ,mean_of_z)
-        """
+                tupple (mean_of_x, mean_of_y ,mean_of_z)"""
 
         #mean_x, mean_y, mean_z
         return (np.mean(self.xyz[:,0]), np.mean(self.xyz[:,1]), np.mean(self.xyz[:,2]))
         
 
     def center_to_origin(self):
-        """ sets the mean of the bone to 0,0,0
-        """    
+        """ sets the mean of the bone to 0,0,0"""    
 
         # set transformation (tfm) value
         self.tfm = self.get_mean()
@@ -92,29 +83,28 @@ class bone:
 
 
     def reset_position(self):
-        """ resets the position of the bone to its orginal one
-        """
-        
+        """ resets the position of the bone to its orginal one"""
         self.xyz = self.xyz + self.tfm
 
     # Alternative constructor:
     # Import directly from matlab path
 
     @classmethod 
-    def from_matlab_path(cls, path):
-        """ Imports matlab file drectly
+    def from_matlab_path(cls, root_dir, matlab_file):
+        """Imports matlab file drectly
         
-            path: path object/string 
+           path: path object/string 
 
-            retruns np.array (n x n x n )
+           retruns np.array (n x n x n )
         """
         
-        matlab_object = scipy.io.loadmat(path)
+        matlab_object = scipy.io.loadmat(root_dir/matlab_file)
         obj = matlab_object.keys()
         obj = list(obj)
         array = matlab_object[obj[-1]]
         
-        return array
+        return cls(array)
+
 
 def mag(v):
     """ Finds magnitude of vector
@@ -122,6 +112,7 @@ def mag(v):
         v (np.array): vector
     """
     return math.sqrt(np.dot(v,v))
+
 
 def angle(v1, v2):
     """ Finds angel between 2 vectors
@@ -146,6 +137,7 @@ def angle(v1, v2):
         ang = 0
        
     return ang , v1
+
 
 def quaternion_rotation(v, c_axis,theta):
 
@@ -223,10 +215,10 @@ def df_angles(bone_f1,bone_f2, name ='UN-NAMED BONE'):
 
     # loops over each PCA
     for n in range(1,4):
-        theta, _ = angle(getattr(bone_f1,f'PC{n}'),getattr(bone_f2.f2,f'PC{n}'))
+        theta, _ = angle(getattr(bone_f1,f'PC{n}'),getattr(bone_f2,f'PC{n}'))
 
         # Sets the column names
-        df.loc[f'{name} {bone_f1} f1: PC{n}',f'{name} {bone_f2} f2: PC{n}'] = theta
+        df.loc[f'{name} f1: PC{n}',f'{name}f2: PC{n}'] = theta
             
     return df
 
