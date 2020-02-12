@@ -1,11 +1,11 @@
 # Dependencies 
-See environment.yml 
+*See environment.yml 
 
-Activate desired environment
+You can copy my conda `sci` enviroment with these comands:
 
-    conda activate myenv
-  
-    conda env update -f environment.yml 
+    conda env create -f environment.yml
+
+    conda activate sci
 
 ## OS
 Has been written (and runs) on both Windows 10 and MacOS
