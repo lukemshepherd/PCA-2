@@ -11,7 +11,7 @@ Activate desired environment
 Has been written (and runs) on both Windows 10 and MacOS
 
 ## Python
-This was written on python 3.7 (although 3.6 *should* work- although not tested) python 2 versions won't work due to the use of f strings
+This was written on python 3.6. Python 2 versions won't work due to the use of f strings
 
 ## mayavi
 This is the 3d plotting library used for rendering the plots. mayvai will launch a qt window to display the plot- meaning that you will need an X serve session for the plots to load. If you want to plot things inline you will need to use jupyter notebooks, not jupyter lab.
@@ -25,9 +25,14 @@ https://docs.enthought.com/mayavi/mayavi/installation.html#installing-with-conda
     conda install mayavi
     
 ## pyquaternion
-http://kieranwynn.github.io/pyquaternion/
+https://github.com/moble/quaternion
+https://quaternion.readthedocs.io/en/latest/
 
-    pip install pyquaternion
+    conda install -c conda-forge quaternion
+    
+ or
+ 
+    pip install numpy-quaternion
     
     
 ## Optional: inline 3d plotting
