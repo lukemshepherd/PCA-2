@@ -24,7 +24,7 @@ https://docs.enthought.com/mayavi/mayavi/installation.html#installing-with-conda
     
     conda install mayavi
     
-## pyquaternion
+## numpy-quaternion 
 https://github.com/moble/quaternion
 https://quaternion.readthedocs.io/en/latest/
 
