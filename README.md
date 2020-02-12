@@ -1,5 +1,5 @@
 # Dependencies 
-*See environment.yml 
+*See environment.yml* 
 
 You can copy my conda `sci` enviroment with these comands:
 
