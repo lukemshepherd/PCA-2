@@ -4,7 +4,7 @@
 ## Dependencies 
 *See environment.yml* 
 
-You can create a copy my conda `sci` enviroment with these comands:
+You can create a copy my conda `vox` enviroment with these comands:
 
     conda env create -f environment.yml
 
