@@ -1,34 +1,22 @@
-# Dependencies 
-*See environment.yml* 
+# How to use
 
-You can create a copy my conda `sci` enviroment with these comands:
+## 1. Set the root directory for the matlab file loader
+`root_dir = Path('C://Users/luke/OneDrive - University College London/Marta/data')`
 
-    conda env create -f environment.yml
+## 2. Load the data that you want to use
+`tibia_f2 = bone.from_matlab_path(root_dir, matlab_file='phantom/phantom_tibia_f2.mat')`
 
-    conda activate sci
+`tibia_f1 = bone.from_matlab_path(root_dir, matlab_file='phantom/phantom_tibia_f1.mat')`
 
-## OS
-Has been written (and runs) on both Windows 10 and MacOS
+### *Set custom filter level (optional)*
+`bone.filter_level = 0.1`
 
-## Python
-This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
+## Rotate the Bone
+`voxel_rotate(tibia_f1, tibia_f2)`
 
-## mayavi
-This is the 3d plotting library used for rendering the plots. mayvai will launch a qt window to display the plot- meaning that you will need an X serve session for the plots to load. If you want to plot things inline you will need to use jupyter notebooks, not jupyter lab.
+## Plotting the Rotation
+`bone_plot(tibia_f1, tibia_f2)`
 
-### mayavi install
-https://docs.enthought.com/mayavi/mayavi/installation.html#installing-with-conda-forge
+## Table of Angles
+`df_angles(tibia_f1, tibia_f2, name='tibia')`
     
-## numpy-quaternion 
-https://github.com/moble/quaternion
-https://quaternion.readthedocs.io/en/latest/
-
-    conda install -c conda-forge quaternion
-    
- or
- 
-    pip install numpy-quaternion
-    
-    
-## Optional: inline 3d plotting
-http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebooks
