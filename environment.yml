@@ -138,5 +138,4 @@ dependencies:
     - traits==5.1.2
     - traitsui==6.1.3
     - vtk==8.1.2
-prefix: C:\Users\luke\.conda\envs\sci
 
