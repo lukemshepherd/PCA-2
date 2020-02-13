@@ -11,7 +11,7 @@ You can create a copy my conda `sci` enviroment with these comands:
 Has been written (and runs) on both Windows 10 and MacOS
 
 ## Python
-This was written on python 3.6. Python 2 versions won't work due to the use of f strings
+This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
 
 ## mayavi
 This is the 3d plotting library used for rendering the plots. mayvai will launch a qt window to display the plot- meaning that you will need an X serve session for the plots to load. If you want to plot things inline you will need to use jupyter notebooks, not jupyter lab.
