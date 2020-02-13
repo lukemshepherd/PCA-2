@@ -60,6 +60,9 @@ This is the 3d plotting library used for rendering the plots. mayvai will launch
 ## Plotting the Rotation
     bone_plot(tibia_f1, tibia_f2)
 
+![rotated_image](/images/rotated.png)
+
+
 ## Table of Angles
     df_angles(tibia_f1, tibia_f2, name='tibia')
 
