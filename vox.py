@@ -24,7 +24,7 @@ class bone:
         self.get_xyz()
 
 
-    def get_xyz(self):
+    def get_xyz(self):  
         """Convert 3D voxel array to xyz coordinates.
     
         array (np.array): 3D voxel array  
@@ -218,7 +218,7 @@ def df_angles(bone_f1,bone_f2, name ='UN-NAMED BONE'):
         theta, _ = angle(getattr(bone_f1,f'PC{n}'),getattr(bone_f2,f'PC{n}'))
 
         # Sets the column names
-        df.loc[f'{name} f1: PC{n}',f'{name}f2: PC{n}'] = theta
+        df.loc[f'{name} f1: PC{n}',f'{name} f2: PC{n}'] = theta
             
     return df
 
