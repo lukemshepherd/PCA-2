@@ -25,6 +25,7 @@ This is the 3d plotting library used for rendering the plots. mayvai will launch
     
 ## numpy-quaternion 
 [numpy-quaternion github](https://github.com/moble/quaternion)
+
 [numpy-quaternion docs](https://quaternion.readthedocs.io/en/latest/)
 
     conda install -c conda-forge quaternion
