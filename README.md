@@ -1,6 +1,8 @@
 # Vox
 *voxel ploting and translation*
 
+![bone_image](/images/bone.png)
+
 ## Dependencies 
 *See environment.yml* 
 
