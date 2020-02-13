@@ -58,4 +58,9 @@ http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebo
 
 ## Table of Angles
 `df_angles(tibia_f1, tibia_f2, name='tibia')`
-    
+
+
+# Contact
+If there are issues please be in touch:
+
+luke.shepherd.17@ucl.ac.uk
