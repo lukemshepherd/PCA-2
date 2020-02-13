@@ -40,7 +40,7 @@ http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebo
 # How to use
 
 ## 1. Set the root directory for the matlab file loader
-    root_dir = Path('C://Users/luke/OneDrive - University College London/Marta/data')
+    root_dir = Path('C://Users/some/file/path/data')
 
 ## 2. Load the data that you want to use
     tibia_f2 = bone.from_matlab_path(root_dir, matlab_file='phantom/phantom_tibia_f2.mat')
@@ -61,6 +61,6 @@ http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebo
 
 
 # Contact
-If there are issues please be in touch:
+If there are an issues or questions please be in touch:
 
 luke.shepherd.17@ucl.ac.uk
