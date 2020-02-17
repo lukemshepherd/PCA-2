@@ -32,6 +32,7 @@ This is the 3d plotting library used for rendering the plots. mayvai will launch
 
     conda install -c conda-forge quaternion
     
+    b  
  or
  
     pip install numpy-quaternion
