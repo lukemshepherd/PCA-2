@@ -1,16 +1,16 @@
 # Vox
-*voxel ploting and translation*
+*voxel plotting and translation*
 
 ![bone_image](/images/bone.png)
 
 ## Dependencies 
 *See environment.yml* 
 
-You can create a copy my conda `vox` enviroment with these comands:
+You can create a copy of my conda `vox` environment with these commands:
 
     conda env create -f environment.yml
 
-    conda activate sci
+    conda activate vox
 
 ## OS
 Has been written (and runs) on both Windows 10 and MacOS
@@ -19,7 +19,7 @@ Has been written (and runs) on both Windows 10 and MacOS
 This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
 
 ## mayavi
-This is the 3d plotting library used for rendering the plots. mayvai will launch a qt window to display the plot- meaning that you will need an X serve session for the plots to load. If you want to plot things inline you will need to use jupyter notebooks, not jupyter lab.
+This is the 3d plotting library used for rendering the plots. Mayvai will launch a qt window to display the plot so you can't use this if you are using something remote like docker- you could set up an X serve session and with SSH but I would recommend just running it locally. There is a jupyter notebooks Extention want to plot things inline in your notebook - however, this is not the most stable or recommended way of plotting.
 
 ### mayavi install
 
@@ -68,7 +68,5 @@ This is the 3d plotting library used for rendering the plots. mayvai will launch
     df_angles(tibia_f1, tibia_f2, name='tibia')
 
 
-## Contact
-If there are an issues or questions please be in touch:
-
-luke.shepherd.17@ucl.ac.uk
+## Questions
+If there are any issues or questions please do ask
