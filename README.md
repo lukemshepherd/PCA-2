@@ -21,11 +21,21 @@ This was written on python 3.6. Python 2 versions won't work due to the use of *
 ## mayavi
 This is the 3d plotting library used for rendering the plots. Mayvai will launch a qt window to display the plot so you can't use this if you are using something remote like docker- you could set up an X serve session and with SSH but I would recommend just running it locally. There is a jupyter notebooks Extention want to plot things inline in your notebook - however, this is not the most stable or recommended way of plotting.
 
+### Optional: inline 3d plotting
+[inline plotting docs](http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebooks)
+  
+  
 ### mayavi install
 
 [mayavi install docs](https://docs.enthought.com/mayavi/mayavi/installation.html#installing-with-conda-forge)
-    
+ 
+Mayavi plots images by calling the VTK libray and displying it a qt window- this means it is very very fast, however can be a bit of pain to install. Part of this is caused by its abity to work with difent qt packages, which makes it very flexable but does also mean it can get a bit confused!
+
+
 ## numpy-quaternion 
+
+Numpy doesn't nativly suport quaternions as a data type- this package always you to pass quaterions properly and makes muliplication an returning the imaginary conponent a lot easier.
+
 [numpy-quaternion github](https://github.com/moble/quaternion)
 
 [numpy-quaternion docs](https://quaternion.readthedocs.io/en/latest/)
@@ -36,11 +46,6 @@ This is the 3d plotting library used for rendering the plots. Mayvai will launch
  
     pip install numpy-quaternion
     
-    
-## Optional: inline 3d plotting
-[inline plotting docs](http://docs.enthought.com/mayavi/mayavi/tips.html#using-mayavi-in-jupyter-notebooks)
-
-
 # How to use
 
 ## 1. Set the root directory for the matlab file loader
