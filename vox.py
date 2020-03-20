@@ -379,6 +379,3 @@ tibia_f1 = bone.from_matlab_path(root_dir, matlab_file="phantom/phantom_tibia_f1
 
 voxel_rotate(tibia_f1, tibia_f2)
 bone_plot(tibia_f1, tibia_f2)
-
-
-🤷‍♀️ = debug
