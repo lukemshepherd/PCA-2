@@ -57,7 +57,7 @@ Numpy doesn't nativly suport quaternions as a data type- this package always you
 ### *Set custom filter level (optional)*
     bone.filter_level = 0.1
 
-### *Set custom colour for bone(optional)*
+### *Set custom colour for bone (optional)*
     tibia_f1.default_color = (0.8, 0.3, 0)
 
 ## 2. Load the data that you want to use
