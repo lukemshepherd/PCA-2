@@ -1,10 +1,12 @@
-import os
+# import os
 import math
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import scipy.io
-from pathlib import Path
 
+# import numba
 from mayavi import mlab
 import quaternion as quat
 from sklearn.decomposition import PCA
@@ -13,6 +15,7 @@ from sklearn.decomposition import PCA
 class bone:
 
     filter_level = 0.001
+    default_color = (0.7, 1, 1)
 
     def __init__(self, array):
         """
@@ -87,41 +90,93 @@ class bone:
         """ resets the position of the bone to its orginal one"""
         self.xyz = self.xyz + self.tfm
 
-    def plot(self):
-        # Plot voxel points
+    def plot(self, user_color=None, PCA_inv=None, PCA=True):
+        """ Plot voxels with optional PCA, and colours
+        
+            user_color (tupple): RGB color of the bone where 1 is maxium
+                                    eg: red = (1,0,0)
+                                    
+            PCA (boolean): plots the PCAs of the voxel
+            
+            PCA_inv (boolean): plots the inverse of each PCA so the axes go in both directions
+        """
 
         if hasattr(self, "pc1") is False:
             self.get_pca()
 
         x, y, z = self.get_mean()
 
+        if user_color is None:
+            user_color = self.default_color
+
+        # plots voxels
         mlab.points3d(
-            self.xyz[:, 0], self.xyz[:, 1], self.xyz[:, 2], mode="cube", scale_factor=1
+            self.xyz[:, 0],
+            self.xyz[:, 1],
+            self.xyz[:, 2],
+            mode="cube",
+            color=user_color,
+            scale_factor=1,
         )
 
-        # Plot PCAs
-        mlab.quiver3d(
-            x, y, z, *self.pc1, line_width=6, scale_factor=0.7, color=(1, 0, 0)
-        )
-        mlab.quiver3d(
-            x, y, z, *self.pc2, line_width=6, scale_factor=0.5, color=(0, 1, 0)
-        )
-        mlab.quiver3d(
-            x, y, z, *self.pc3, line_width=6, scale_factor=0.3, color=(0, 0, 1)
-        )
+        # plots pca arrows
+        if PCA is True:
+
+            mlab.quiver3d(
+                x, y, z, *self.pc1, line_width=6, scale_factor=100, color=(1, 0, 0)
+            )
+            mlab.quiver3d(
+                x, y, z, *self.pc2, line_width=6, scale_factor=50, color=(0, 1, 0)
+            )
+            mlab.quiver3d(
+                x, y, z, *self.pc3, line_width=6, scale_factor=30, color=(0, 0, 1)
+            )
+
+        # plots the pca *-1
+        if PCA_inv is True:
+
+            mlab.quiver3d(
+                x,
+                y,
+                z,
+                *(self.pc1 * -1),
+                line_width=6,
+                scale_factor=100,
+                color=(1, 0, 0),
+            )
+            mlab.quiver3d(
+                x,
+                y,
+                z,
+                *(self.pc2 * -1),
+                line_width=6,
+                scale_factor=50,
+                color=(0, 1, 0),
+            )
+            mlab.quiver3d(
+                x,
+                y,
+                z,
+                *(self.pc3 * -1),
+                line_width=6,
+                scale_factor=30,
+                color=(0, 0, 1),
+            )
+
+        # return mlab.show()
 
     #     Alternative constructor:
     #     Import directly from matlab path
 
     @classmethod
-    def from_matlab_path(cls, root_dir, matlab_file):
+    def from_matlab_path(cls, matlab_file):
         """Imports matlab file drectly
 
            path: path object/string 
 
            retruns np.array (n x n x n )"""
 
-        matlab_object = scipy.io.loadmat(root_dir / matlab_file)
+        matlab_object = scipy.io.loadmat(matlab_file)
         obj = matlab_object.keys()
         obj = list(obj)
         array = matlab_object[obj[-1]]
@@ -192,7 +247,7 @@ def quaternion_rotation_from_angle(v, c_axis, theta):
 
 def voxel_rotate(bone_f1, bone_f2):
 
-    quaterion_product = None
+    # quaterion_product = None
 
     # center bones too 0,0,0,
     bone_f1.center_to_origin()
@@ -264,118 +319,3 @@ def df_angles(bone_f1, bone_f2, name="UN-NAMED BONE"):
         df.loc[f"{name} f1: pc{n}", f"{name} f2: pc{n}"] = theta
 
     return df
-
-
-def bone_plot(*args, user_colours=None, plot_PCA=True, plot_inv=False):
-    """ Plots voxel array that has an xyz attribute;
-        can take n bones and plot PCA vectors
-        PC1 Red 
-        PC2 Blue
-        PC3 Green
-
-        plot_PCA: plots the PCAs as vectors on the bone
-        plot_inv: plots the inverse of each PCA vector (PCAs go in both directions)
-    """
-
-    # Sorting out colours
-    colour_dict = {
-        "yellow": (0.9, 0.9, 0),
-        "pastel_blue": (0.7, 1, 1),
-        "purple": (0.6, 0, 0.5),
-        "orange": (0.8, 0.3, 0),
-        "dark_blue": (0, 0.3, 0.7),
-    }
-
-    if user_colours is None:
-        user_colours = colour_dict
-
-    plot_colours = []
-
-    for col in user_colours:
-        x = colour_dict.get(col)
-        plot_colours.append(x)
-
-    for n, bone in enumerate(args):
-
-        mlab.points3d(
-            bone.xyz[:, 0],
-            bone.xyz[:, 1],
-            bone.xyz[:, 2],
-            mode="cube",
-            color=plot_colours[n],
-            scale_factor=1,
-        )
-
-        x, y, z = bone.get_mean()
-
-        # plot PCAs
-        u0, v0, w0 = bone.pc1 * 100
-        u0_inv, v0_inv, w0_inv = bone.pc1 * 100 * -1
-
-        u1, v1, w1 = bone.pc2 * 100
-        u1_inv, v1_inv, w1_inv = bone.pc2 * 100 * -1
-
-        u2, v2, w2 = bone.pc3 * 100
-        u2_inv, v2_inv, w2_inv = bone.pc3 * 100 * -1
-
-        # print(f"{n}th bone PCA vectors: \n {bone.vec} \n ")
-
-        if plot_PCA is True:
-            mlab.quiver3d(
-                x, y, z, u0, v0, w0, line_width=6, scale_factor=0.7, color=(1, 0, 0)
-            )
-            mlab.quiver3d(
-                x, y, z, u1, v1, w1, line_width=6, scale_factor=0.5, color=(0, 1, 0)
-            )
-            mlab.quiver3d(
-                x, y, z, u2, v2, w2, line_width=6, scale_factor=0.3, color=(0, 0, 1)
-            )
-
-        # plotting the inverse of PCAs
-        if plot_inv is True:
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                u0_inv,
-                v0_inv,
-                w0_inv,
-                line_width=6,
-                scale_factor=0.7,
-                color=(1, 0, 0),
-            )
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                u1_inv,
-                v1_inv,
-                w1_inv,
-                line_width=6,
-                scale_factor=0.5,
-                color=(0, 1, 0),
-            )
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                u2_inv,
-                v2_inv,
-                w2_inv,
-                line_width=6,
-                scale_factor=0.3,
-                color=(0, 0, 1),
-            )
-
-    return mlab.show()
-
-
-# Example
-
-from file_paths import root_dir
-
-tibia_f2 = bone.from_matlab_path(root_dir, matlab_file="phantom/phantom_tibia_f2.mat")
-tibia_f1 = bone.from_matlab_path(root_dir, matlab_file="phantom/phantom_tibia_f1.mat")
-
-voxel_rotate(tibia_f1, tibia_f2)
-bone_plot(tibia_f1, tibia_f2)
