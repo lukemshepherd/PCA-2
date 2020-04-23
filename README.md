@@ -51,9 +51,7 @@ Numpy doesn't nativly suport quaternions as a data type- this package always you
  
     $ pip install numpy-quaternion
     
-# Docs
-[read the docs](/Docs.md)
-    
+# [Docs](/Docs.md)
     
 # How to use
 
