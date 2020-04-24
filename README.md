@@ -13,10 +13,10 @@ You can create a copy of my conda `vox` environment with these commands:
     $ conda activate vox
 
 ## OS
-Has been written (and runs) on both Windows 10 and MacOS
+Has been written (and runs) on both Windows 10, MacOS and Linux (Manjaro 5.6)
 
 ## Python
-This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
+This was written on python 3.6, Python 2 versions won't work due to the use of *f strings*
 
 ## mayavi
 This is the 3d plotting library used for rendering the plots. Mayvai will launch a qt window to display the plot so you can't use this if you are using something remote like docker- you could set up an X serve session and with SSH but I would recommend just running it locally. There is a jupyter notebooks Extention want to plot things inline in your notebook - however, this is not the most stable or recommended way of plotting.
