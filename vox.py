@@ -13,9 +13,11 @@ from sklearn.decomposition import PCA
 
 
 class bone:
+    # defalt class values
 
     filter_level = 0.001
     default_color = (0.7, 1, 1)
+    self.scale = 1.5
 
     def __init__(self, array):
         """
@@ -165,6 +167,30 @@ class bone:
 
         # return mlab.show()
 
+    def upscale(self):
+        """ upscales the bone """
+        n = 1
+
+        self.center_to_origin()
+
+        while n < self.scale:
+
+            n += 0.1
+
+            scalled = self.xyz * np.array([n, n, n])
+            self.xyz = np.concatenate((scalled, self.xyz))
+
+            print(f"scale = {n}")
+
+            # if xyz.shape > max_lim:
+            #     brake
+            #     print('xyz point limit hit')
+
+    def downscale(self):
+        """ scales bone back to orginal dementions"""
+
+        self.xyz = self.xyz / np.array([self.scale, self.scale, self.scale])
+
     #     Alternative constructor:
     #     Import directly from matlab path
 
@@ -184,7 +210,7 @@ class bone:
         return cls(array)
 
 
-# # Maths functions
+#  Maths functions
 
 
 def mag(v):
@@ -235,14 +261,6 @@ def quaternion_rotation_from_angle(v, c_axis, theta):
     v_prime = q * vec * np.conjugate(q)
 
     return v_prime.imag
-
-
-# def quaternion_rotation_from_quat(v, q):
-
-#     # double cover quaternion rotation
-#     v_prime = q * v * np.conjugate(q)
-
-#     return v_prime.imag
 
 
 def voxel_rotate(bone_f1, bone_f2):

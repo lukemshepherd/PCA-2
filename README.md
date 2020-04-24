@@ -1,7 +1,7 @@
 # Vox
 *voxel plotting and translation*
 
-![bone_image](/images/bone.png)
+![bone_image](/images/non_alined.png)
 
 ## Dependencies 
 *See environment.yml* 
@@ -51,15 +51,13 @@ Numpy doesn't nativly suport quaternions as a data type- this package always you
  
     $ pip install numpy-quaternion
     
-# [Docs](/Docs.md)
-    
 # How to use
 
 
 ### *Set custom filter level (optional)*
     bone.filter_level = 0.1
 
-### *Set custom colour for bone (optional)*
+### *Set custom colour for bone(optional)*
     tibia_f1.default_color = (0.8, 0.3, 0)
 
 ## 2. Load the data that you want to use
@@ -79,7 +77,7 @@ Plotting with mayavi is very similar to matplotplib where you build a scene and 
 
 You can plot bones by calling the `.plot()` method and then `mlab.show()`
 
-![rotated_image](/images/rotated.png)
+![rotated_image](/images/alined.png)
 
 
 ## 5. Table of Angles
