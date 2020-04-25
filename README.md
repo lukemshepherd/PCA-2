@@ -8,15 +8,15 @@
 
 You can create a copy of my conda `vox` environment with these commands:
 
-    $ conda env create -f vox_environment.yml
+    $ conda env create -f environment.yml
 
     $ conda activate vox
 
 ## OS
-Has been written (and runs) on both Windows 10, MacOS and Linux (Manjaro 5.6)
+Has been written (and runs) on both Windows 10 and MacOS
 
 ## Python
-This was written on python 3.6, Python 2 versions won't work due to the use of *f strings*
+This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
 
 ## mayavi
 This is the 3d plotting library used for rendering the plots. Mayvai will launch a qt window to display the plot so you can't use this if you are using something remote like docker- you could set up an X serve session and with SSH but I would recommend just running it locally. There is a jupyter notebooks Extention want to plot things inline in your notebook - however, this is not the most stable or recommended way of plotting.
@@ -57,7 +57,7 @@ Numpy doesn't nativly suport quaternions as a data type- this package always you
 ### *Set custom filter level (optional)*
     bone.filter_level = 0.1
 
-### *Set custom colour for bone (optional)*
+### *Set custom colour for bone(optional)*
     tibia_f1.default_color = (0.8, 0.3, 0)
 
 ## 2. Load the data that you want to use
