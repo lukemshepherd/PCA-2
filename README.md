@@ -8,7 +8,7 @@
 
 You can create a copy of my conda `vox` environment with these commands:
 
-    $ conda env create -f environment.yml
+    $ conda env create -f vox_environment.yml
 
     $ conda activate vox
 
