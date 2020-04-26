@@ -6,7 +6,5 @@ nav:
 - Documentation:
   - Bone class meathods: bone_docs.md
   - Functions: func_docs.md
-# - About: about.md
 
 theme: readthedocs
-
