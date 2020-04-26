@@ -1,5 +1,7 @@
 # Vox
-*voxel plotting and translation*
+
+## Documentation
+https://lukemshepherd.github.io/vox/
 
 ![bone_image](docs/images/non_alined.png)
 
