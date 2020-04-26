@@ -1,9 +1,9 @@
 # Vox
 
+![bone_image](docs/images/non_alined.png)
+
 ## Documentation
 https://lukemshepherd.github.io/vox/
-
-![bone_image](docs/images/non_alined.png)
 
 ## Dependencies 
 *See environment.yml* 
