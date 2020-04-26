@@ -37,3 +37,4 @@ Numpy doesn't natively support quaternions as a data type- this package always y
 or
 
     $ pip install numpy-quaternion
+

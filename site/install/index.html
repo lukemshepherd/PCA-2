@@ -115,8 +115,10 @@
                 <h1 id="how-to-install">How to install</h1>
 <h2 id="clone-conda-environment">Clone conda environment</h2>
 <p>If you use conda environments this is probably the quickest way to install dependencies is to update/ create an environment from my <code>vox_enviroment.yml</code> file. This will install all of the required packages.</p>
-<p>$ conda env create -f environment.yml</p>
-<p>$ conda activate vox</p>
+<pre><code>$ conda env create -f environment.yml
+
+$ conda activate vox
+</code></pre>
 <h2 id="installing-dependencies">Installing dependencies</h2>
 <h3 id="python">Python</h3>
 <p>This was written on python 3.6. Python 2 versions won't work due to the use of <em>f strings</em></p>
@@ -124,15 +126,19 @@
 <p><a href="https://docs.enthought.com/mayavi/mayavi/installation.html">mayavi install docs</a>
 Mayavi plots images by calling the VTK library and displaying it a qt window- this means it is very very fast, however can be a bit of pain to install. Part of this is caused by its ability to work with different qt packages, which makes it very flexible but does also mean it can get a bit confused!</p>
 <p>You can use conda to install it but using pip seems to be easier and will sort out the VTK install for you.</p>
-<p>$ pip install mayavi</p>
-<p>$ pip install PyQt5</p>
+<pre><code>$ pip install mayavi
+
+$ pip install PyQt5
+</code></pre>
 <h3 id="numpy-quaternion">numpy-quaternion</h3>
 <p>Numpy doesn't natively support quaternions as a data type- this package always you to pass quaternions properly and makes multiplication and returning the imaginary component a lot easier.</p>
 <p><a href="https://github.com/moble/quaternion">numpy-quaternion github</a></p>
 <p><a href="https://quaternion.readthedocs.io/en/latest/">numpy-quaternion docs</a></p>
-<p>$ conda install -c conda-forge quaternion
-or
-$ pip install numpy-quaternion</p>
+<pre><code>$ conda install -c conda-forge quaternion
+</code></pre>
+<p>or</p>
+<pre><code>$ pip install numpy-quaternion
+</code></pre>
               
             </div>
           </div>

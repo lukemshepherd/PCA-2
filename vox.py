@@ -151,7 +151,7 @@ class bone:
                               color=(0, 0, 1))
             
     def dense(self):
-        """ upscales the bone """
+        """ up-scales the bone """
         n = 1
 
         self.center_to_origin()
