@@ -1,4 +1,4 @@
-# Bone class meathods:
+# Bone class methods:
 
 ## `.get_xyz()`
 
