@@ -4,9 +4,9 @@
 
 If you use conda environments this is probably the quickest way to install dependencies is to update/ create an environment from my `vox_enviroment.yml` file. This will install all of the required packages.
 
-$ conda env create -f environment.yml
+    $ conda env create -f environment.yml
 
-$ conda activate vox
+    $ conda activate vox
 
 ## Installing dependencies
 
@@ -20,9 +20,9 @@ Mayavi plots images by calling the VTK library and displaying it a qt window- th
 
 You can use conda to install it but using pip seems to be easier and will sort out the VTK install for you.
 
-$ pip install mayavi
+    $ pip install mayavi
 
-$ pip install PyQt5
+    $ pip install PyQt5
 
 ### numpy-quaternion 
 
@@ -32,6 +32,8 @@ Numpy doesn't natively support quaternions as a data type- this package always y
 
 [numpy-quaternion docs](https://quaternion.readthedocs.io/en/latest/)
 
-$ conda install -c conda-forge quaternion
+    $ conda install -c conda-forge quaternion
+
 or
-$ pip install numpy-quaternion
+
+    $ pip install numpy-quaternion
