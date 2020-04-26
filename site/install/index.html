@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Questions - Vox</title>
+  <title>Installing - Vox</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Questions";
-    var mkdocs_page_input_path = "about.md";
+    var mkdocs_page_name = "Installing";
+    var mkdocs_page_input_path = "install.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -51,8 +51,22 @@
                     <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../install/">Installing</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installing</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#clone-conda-environment">Clone conda environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing-dependencies">Installing dependencies</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#python">Python</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mayavi">mayavi</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#numpy-quaternion">numpy-quaternion</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <ul>
@@ -87,7 +101,7 @@
     
       
     
-    <li>Questions</li>
+    <li>Installing</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -98,12 +112,46 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="questions">Questions</h1>
-<p>If you have questions about </p>
+                <h1 id="how-to-install">How to install</h1>
+<h2 id="clone-conda-environment">Clone conda environment</h2>
+<p>If you use conda environments this is probably the quickest way to install dependencies is to update/ create an environment from my <code>vox_enviroment.yml</code> file. This will install all of the required packages.</p>
+<pre><code>$ conda env create -f environment.yml
+
+$ conda activate vox
+</code></pre>
+<h2 id="installing-dependencies">Installing dependencies</h2>
+<h3 id="python">Python</h3>
+<p>This was written on python 3.6. Python 2 versions won't work due to the use of <em>f strings</em></p>
+<h3 id="mayavi">mayavi</h3>
+<p><a href="https://docs.enthought.com/mayavi/mayavi/installation.html">mayavi install docs</a></p>
+<p>Mayavi plots images by calling the VTK libray and displying it a qt window- this means it is very very fast, however can be a bit of pain to install. Part of this is caused by its abity to work with difent qt packages, which makes it very flexable but does also mean it can get a bit confused!</p>
+<p>You can use conda to install it but using pip seems to be easier and will sort out the VTK install for you.</p>
+<pre><code>$ pip install mayavi
+
+$ pip install PyQt5
+</code></pre>
+<h3 id="numpy-quaternion">numpy-quaternion</h3>
+<p>Numpy doesn't nativly suport quaternions as a data type- this package always you to pass quaterions properly and makes muliplication and returning the imaginary conponent a lot easier.</p>
+<p><a href="https://github.com/moble/quaternion">numpy-quaternion github</a></p>
+<p><a href="https://quaternion.readthedocs.io/en/latest/">numpy-quaternion docs</a></p>
+<pre><code>$ conda install -c conda-forge quaternion
+</code></pre>
+<p>or</p>
+<pre><code>$ pip install numpy-quaternion
+</code></pre>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../get_started/" class="btn btn-neutral float-right" title="Getting started">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -127,6 +175,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../get_started/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

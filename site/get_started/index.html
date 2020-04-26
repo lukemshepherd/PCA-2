@@ -9,7 +9,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Questions - Vox</title>
+  <title>Getting started - Vox</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,8 +18,8 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Questions";
-    var mkdocs_page_input_path = "about.md";
+    var mkdocs_page_name = "Getting started";
+    var mkdocs_page_input_path = "get_started.md";
     var mkdocs_page_url = null;
   </script>
   
@@ -55,8 +55,22 @@
                     <li class="toctree-l1"><a class="reference internal" href="../install/">Installing</a>
                     </li>
                 </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../get_started/">Getting started</a>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Getting started</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#set-custom-filter-level-optional">Set custom filter level (optional)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#set-custom-colour-for-bone-optional">Set custom colour for bone (optional)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-load-the-data-that-you-want-to-use">1. Load the data that you want to use</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-rotate-the-bone">2. Rotate the Bone</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-plotting-the-rotation">3. Plotting the Rotation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-table-of-angles">4. Table of Angles</a>
+    </li>
+    </ul>
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Documentation</span></p>
@@ -87,7 +101,7 @@
     
       
     
-    <li>Questions</li>
+    <li>Getting started</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -98,12 +112,45 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="questions">Questions</h1>
-<p>If you have questions about </p>
+                <h1 id="how-to-use">How to use</h1>
+<h3 id="set-custom-filter-level-optional"><em>Set custom filter level (optional)</em></h3>
+<pre><code>bone.filter_level = 0.1
+</code></pre>
+<h3 id="set-custom-colour-for-bone-optional"><em>Set custom colour for bone (optional)</em></h3>
+<pre><code>tibia_f1.default_color = (0.8, 0.3, 0)
+</code></pre>
+<h2 id="1-load-the-data-that-you-want-to-use">1. Load the data that you want to use</h2>
+<pre><code>tibia_f2 = bone.from_matlab_path(matlab_file='phantom/phantom_tibia_f2.mat')
+
+tibia_f1 = bone.from_matlab_path(matlab_file='phantom/phantom_tibia_f1.mat')
+</code></pre>
+<h2 id="2-rotate-the-bone">2. Rotate the Bone</h2>
+<pre><code>voxel_rotate(tibia_f1, tibia_f2)
+</code></pre>
+<h2 id="3-plotting-the-rotation">3. Plotting the Rotation</h2>
+<pre><code>tibia_f1.plot()
+tibia_f2.plot()
+mlab.show()
+</code></pre>
+<p>Plotting with mayavi is very similar to matplotplib where you build a scene and call it with <code>show()</code></p>
+<p>You can plot bones by calling the <code>.plot()</code> method and then <code>mlab.show()</code></p>
+<p><img alt="rotated_image" src="../images/alined.png" /></p>
+<h2 id="4-table-of-angles">4. Table of Angles</h2>
+<pre><code>df_angles(tibia_f1, tibia_f2, name='tibia')
+</code></pre>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../bone_docs/" class="btn btn-neutral float-right" title="Bone class meathods">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../install/" class="btn btn-neutral" title="Installing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -127,6 +174,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
+        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../bone_docs/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
