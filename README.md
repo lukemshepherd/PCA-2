@@ -13,7 +13,7 @@ You can create a copy of my conda `vox` environment with these commands:
     $ conda activate vox
 
 ## OS
-Has been written (and runs) on both Windows 10 and MacOS
+Has been written (and runs) on Windows 10, MacOS and Linux (Manjaro 5.6)
 
 ## Python
 This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
@@ -60,15 +60,15 @@ Numpy doesn't nativly suport quaternions as a data type- this package always you
 ### *Set custom colour for bone(optional)*
     tibia_f1.default_color = (0.8, 0.3, 0)
 
-## 2. Load the data that you want to use
+## 1. Load the data that you want to use
     tibia_f2 = bone.from_matlab_path(matlab_file='phantom/phantom_tibia_f2.mat')
 
     tibia_f1 = bone.from_matlab_path(matlab_file='phantom/phantom_tibia_f1.mat')
 
-## 3. Rotate the Bone
+## 2. Rotate the Bone
     voxel_rotate(tibia_f1, tibia_f2)
 
-## 4. Plotting the Rotation
+## 3. Plotting the Rotation
     tibia_f1.plot()
     tibia_f2.plot()
     mlab.show()
@@ -80,7 +80,7 @@ You can plot bones by calling the `.plot()` method and then `mlab.show()`
 ![rotated_image](/images/alined.png)
 
 
-## 5. Table of Angles
+## 4. Table of Angles
     df_angles(tibia_f1, tibia_f2, name='tibia')
 
 
