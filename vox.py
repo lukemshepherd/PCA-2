@@ -1,4 +1,3 @@
-# import os
 import math
 from pathlib import Path
 
@@ -6,18 +5,19 @@ import numpy as np
 import pandas as pd
 import scipy.io
 
-# import numba
+# numba 0.48 is a dependecy for quaternion
+import numba
 from mayavi import mlab
 import quaternion as quat
 from sklearn.decomposition import PCA
 
-
+# bone object class:
 class bone:
     # defalt class values
 
     filter_level = 0.001
     default_color = (0.7, 1, 1)
-    self.scale = 1.5
+    scale = 1.5
 
     def __init__(self, array):
         """
@@ -59,9 +59,9 @@ class bone:
                         self.pc2
                         self.pc3"""
 
-        pca = PCA(svd_solver="full")
+        pca = PCA(svd_solver='full')
         pca.fit(self.xyz)
-
+         
         self.list = pca.components_
         self.pc1 = pca.components_[0]
         self.pc2 = pca.components_[1]
@@ -73,12 +73,8 @@ class bone:
             returns:
                 tupple (mean_of_x, mean_of_y ,mean_of_z)"""
 
-        # mean_x, mean_y, mean_z
-        return (
-            np.mean(self.xyz[:, 0]),
-            np.mean(self.xyz[:, 1]),
-            np.mean(self.xyz[:, 2]),
-        )
+        #mean_x, mean_y, mean_z
+        return (np.mean(self.xyz[:, 0]), np.mean(self.xyz[:, 1]), np.mean(self.xyz[:, 2]))
 
     def center_to_origin(self):
         """ sets the mean of the bone to 0,0,0"""
@@ -102,77 +98,64 @@ class bone:
             
             PCA_inv (boolean): plots the inverse of each PCA so the axes go in both directions
         """
-
-        if hasattr(self, "pc1") is False:
+                
+        if hasattr(self, 'pc1') is False:
             self.get_pca()
-
+        
         x, y, z = self.get_mean()
-
+        
         if user_color is None:
             user_color = self.default_color
-
-        # plots voxels
-        mlab.points3d(
-            self.xyz[:, 0],
-            self.xyz[:, 1],
-            self.xyz[:, 2],
-            mode="cube",
-            color=user_color,
-            scale_factor=1,
-        )
-
+    
+        #plots voxels 
+        mlab.points3d(self.xyz[:, 0],
+                      self.xyz[:, 1],
+                      self.xyz[:, 2],
+                      mode = "cube",
+                      color= user_color,
+                      scale_factor = 1)   
+        
         # plots pca arrows
         if PCA is True:
-
-            mlab.quiver3d(
-                x, y, z, *self.pc1, line_width=6, scale_factor=100, color=(1, 0, 0)
-            )
-            mlab.quiver3d(
-                x, y, z, *self.pc2, line_width=6, scale_factor=50, color=(0, 1, 0)
-            )
-            mlab.quiver3d(
-                x, y, z, *self.pc3, line_width=6, scale_factor=30, color=(0, 0, 1)
-            )
-
+        
+            mlab.quiver3d(x, y, z, *self.pc1,
+                              line_width=6,
+                              scale_factor=100,
+                              color=(1, 0, 0))
+            mlab.quiver3d(x, y, z, *self.pc2,
+                              line_width=6,
+                              scale_factor=50,
+                              color=(0, 1, 0))
+            mlab.quiver3d(x, y, z, *self.pc3,
+                              line_width=6,
+                              scale_factor=30,
+                              color=(0, 0, 1))
+        
+        
+       # plots the pca *-1  
         # plots the pca *-1
+       # plots the pca *-1  
         if PCA_inv is True:
-
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                *(self.pc1 * -1),
-                line_width=6,
-                scale_factor=100,
-                color=(1, 0, 0),
-            )
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                *(self.pc2 * -1),
-                line_width=6,
-                scale_factor=50,
-                color=(0, 1, 0),
-            )
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                *(self.pc3 * -1),
-                line_width=6,
-                scale_factor=30,
-                color=(0, 0, 1),
-            )
-
-        # return mlab.show()
-
-    def upscale(self):
+        
+            mlab.quiver3d(x, y, z, *(self.pc1*-1),
+                              line_width=6,
+                              scale_factor=100,
+                              color=(1, 0, 0))
+            mlab.quiver3d(x, y, z, *(self.pc2*-1),
+                              line_width=6,
+                              scale_factor=50,
+                              color=(0, 1, 0))
+            mlab.quiver3d(x, y, z, *(self.pc3*-1),
+                              line_width=6,
+                              scale_factor=30,
+                              color=(0, 0, 1))
+            
+    def dense(self):
         """ upscales the bone """
         n = 1
 
         self.center_to_origin()
-
+        
         while n < self.scale:
 
             n += 0.1
@@ -180,19 +163,13 @@ class bone:
             scalled = self.xyz * np.array([n, n, n])
             self.xyz = np.concatenate((scalled, self.xyz))
 
+            self.xyz =  self.xyz = self.xyz * np.array[1/n,1/n,1/n])
+
             print(f"scale = {n}")
 
             # if xyz.shape > max_lim:
             #     brake
             #     print('xyz point limit hit')
-
-    def downscale(self):
-        """ scales bone back to orginal dementions"""
-
-        self.xyz = self.xyz / np.array([self.scale, self.scale, self.scale])
-
-    #     Alternative constructor:
-    #     Import directly from matlab path
 
     @classmethod
     def from_matlab_path(cls, matlab_file):
@@ -207,11 +184,9 @@ class bone:
         obj = list(obj)
         array = matlab_object[obj[-1]]
 
-        return cls(array)
+        return cls(array)   
 
-
-#  Maths functions
-
+# Functions:
 
 def mag(v):
     """ Finds magnitude of vector

@@ -1,7 +1,7 @@
 # Vox
 *voxel plotting and translation*
 
-![bone_image](/images/non_alined.png)
+![bone_image](docs/images/non_alined.png)
 
 ## Dependencies 
 *See environment.yml* 

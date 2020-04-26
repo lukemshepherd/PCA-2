@@ -1,0 +1,12 @@
+site_name: Vox
+nav:
+- Home: index.md
+- Installing: install.md
+- Getting started: get_started.md
+- Documentation:
+  - Bone class meathods: bone_docs.md
+  - Functions: func_docs.md
+# - About: about.md
+
+theme: readthedocs
+
