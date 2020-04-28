@@ -1,5 +1,4 @@
 # Vox
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/lukemshepherd/vox/master)
 ![bone_image](docs/images/non_alined.png)
 
 ## Documentation
