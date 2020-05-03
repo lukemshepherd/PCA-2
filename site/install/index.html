@@ -64,6 +64,8 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#numpy-quaternion">numpy-quaternion</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#numpy-stl">numpy-stl</a>
+    </li>
         </ul>
     </li>
     </ul>
@@ -73,9 +75,17 @@
                     <li class="toctree-l1"><a class="reference internal" href="../get_started/">Getting started</a>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stl/">STL objects</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../interpolation/">Interpolation</a>
+                    </li>
+                </ul>
                 <p class="caption"><span class="caption-text">Documentation</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../bone_docs/">Bone class meathods</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../bone_docs/">Bone class methods</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../func_docs/">Functions</a>
                     </li>
@@ -121,7 +131,7 @@ $ conda activate vox
 </code></pre>
 <h2 id="installing-dependencies">Installing dependencies</h2>
 <h3 id="python">Python</h3>
-<p>This was written on python 3.6. Python 2 versions won't work due to the use of <em>f strings</em></p>
+<p>Python 3.6 and higher</p>
 <h3 id="mayavi">mayavi</h3>
 <p><a href="https://docs.enthought.com/mayavi/mayavi/installation.html">mayavi install docs</a>
 Mayavi plots images by calling the VTK library and displaying it a qt window- this means it is very very fast, however can be a bit of pain to install. Part of this is caused by its ability to work with different qt packages, which makes it very flexible but does also mean it can get a bit confused!</p>
@@ -131,13 +141,19 @@ Mayavi plots images by calling the VTK library and displaying it a qt window- th
 $ pip install PyQt5
 </code></pre>
 <h3 id="numpy-quaternion">numpy-quaternion</h3>
-<p>Numpy doesn't natively support quaternions as a data type- this package always you to pass quaternions properly and makes multiplication and returning the imaginary component a lot easier.</p>
+<p>Numpy doesn't natively support quaternions as a data type- this package allows you to pass quaternions properly and makes multiplication and returning the imaginary component a lot easier.</p>
 <p><a href="https://github.com/moble/quaternion">numpy-quaternion github</a></p>
 <p><a href="https://quaternion.readthedocs.io/en/latest/">numpy-quaternion docs</a></p>
 <pre><code>$ conda install -c conda-forge quaternion
 </code></pre>
 <p>or</p>
 <pre><code>$ pip install numpy-quaternion
+</code></pre>
+<h3 id="numpy-stl">numpy-stl</h3>
+<p>Numpy-stl adds support for loading and breaking down stl data.</p>
+<p><a href="https://github.com/WoLpH/numpy-stl">numpy-stl github</a></p>
+<p><a href="https://numpy-stl.readthedocs.io/en/latest/">numpy-stl documentation</a></p>
+<pre><code>$ pip install numpy-stl
 </code></pre>
               
             </div>

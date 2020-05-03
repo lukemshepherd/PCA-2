@@ -33,6 +33,8 @@ Returns bone to original position in space
 Plot voxels with optional PCA, and colours
         
 `user_color` (tuple): RGB color of the bone where 1 is maxium eg: red = (1,0,0)
+
+[www.colortools.net/color_mixer.html](https://www.colortools.net/color_mixer.html) is a good tool to work out what the best colour to use is.
                         
 `PCA` (boolean): plots the PCAs of the voxel
 

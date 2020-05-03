@@ -4,7 +4,7 @@
 
 If you use conda environments this is probably the quickest way to install dependencies is to update/ create an environment from my `vox_enviroment.yml` file. This will install all of the required packages.
 
-    $ conda env create -f environment.yml
+    $ conda env create -f vox_environment.yml
 
     $ conda activate vox
 

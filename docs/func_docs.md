@@ -18,14 +18,11 @@ v = vector np.array 1x3
 
 `theta` = angle of rotation (radians) 
 
-## [rotate](/vox/vox/rotate)
+## rotate
 
 Alines and rotates bone_f1 to bone_f2
 
 (bone_f1, bone_f2):
 
 bone = bone class object
-
-
-
 

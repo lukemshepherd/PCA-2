@@ -13,6 +13,6 @@ The full stl data is stored in `tibia_stl.data`
 The stl files are loaded from [numpy-stl](https://numpy-stl.readthedocs.io/en/latest/) module 
 
 
-## Saving bones back into 
+## Saving bones back into .stl
 
     tibia_stl.data.save('file.stl')
