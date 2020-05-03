@@ -3,8 +3,10 @@ nav:
 - Home: index.md
 - Installing: install.md
 - Getting started: get_started.md
+- STL objects: stl.md 
+- Interpolation: interpolation.md
 - Documentation:
-  - Bone class meathods: bone_docs.md
+  - Bone class methods: bone_docs.md
   - Functions: func_docs.md
 
 theme: readthedocs

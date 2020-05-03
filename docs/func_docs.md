@@ -18,7 +18,7 @@ v = vector np.array 1x3
 
 `theta` = angle of rotation (radians) 
 
-## voxel_rotate
+## [rotate](/vox/vox/rotate)
 
 Alines and rotates bone_f1 to bone_f2
 

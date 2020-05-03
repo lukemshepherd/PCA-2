@@ -11,10 +11,10 @@
 
     tibia_f1 = bone.from_matlab_path(matlab_file='phantom/phantom_tibia_f1.mat')
 
-## 2. Rotate the Bone
+## 2. Rotate the bone
     voxel_rotate(tibia_f1, tibia_f2)
 
-## 3. Plotting the Rotation
+## 3. Plotting the rotation
     tibia_f1.plot()
     tibia_f2.plot()
     mlab.show()

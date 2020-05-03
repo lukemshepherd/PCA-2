@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import scipy.io
 from scipy.ndimage import zoom
+from pathlib import Path
 
 # import numba
 from stl import mesh
@@ -204,6 +205,8 @@ class bone:
 
            retruns np.array (n x n x n )"""
 
+        matlab_file = Path(matlab_file)
+
         matlab_object = scipy.io.loadmat(matlab_file)
         obj = matlab_object.keys()
         obj = list(obj)
@@ -218,6 +221,8 @@ class bone:
        path: path object/string 
 
        retruns np.array (n x n x n )"""
+
+        stl_file = Path(stl_file)
 
         data = mesh.Mesh.from_file(stl_file)
 

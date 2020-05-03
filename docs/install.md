@@ -11,7 +11,7 @@ If you use conda environments this is probably the quickest way to install depen
 ## Installing dependencies
 
 ### Python
-This was written on python 3.6. Python 2 versions won't work due to the use of *f strings*
+Python 3.6 and higher
 
 ### mayavi
 
@@ -26,7 +26,7 @@ You can use conda to install it but using pip seems to be easier and will sort o
 
 ### numpy-quaternion 
 
-Numpy doesn't natively support quaternions as a data type- this package always you to pass quaternions properly and makes multiplication and returning the imaginary component a lot easier.
+Numpy doesn't natively support quaternions as a data type- this package allows you to pass quaternions properly and makes multiplication and returning the imaginary component a lot easier.
 
 [numpy-quaternion github](https://github.com/moble/quaternion)
 
@@ -38,3 +38,11 @@ or
 
     $ pip install numpy-quaternion
 
+### numpy-stl
+Numpy-stl adds support for loading and breaking down stl data.
+
+[numpy-stl github](https://github.com/WoLpH/numpy-stl)
+
+[numpy-stl documentation](https://numpy-stl.readthedocs.io/en/latest/)
+
+    $ pip install numpy-stl
