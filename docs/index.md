@@ -4,5 +4,11 @@ This is a package for rotating and aligning voxel bones.
 
 ![](images/non_alined.png)
 
-## Repository link
-[github.com/lukemshepherd/vox](https://github.com/lukemshepherd/vox)
+## [Repository link](https://github.com/lukemshepherd/vox)
+
+## Documentation:
+
+[Class methods docs](https://lukemshepherd.github.io/vox/bone_docs/)
+
+[Functions docs](https://lukemshepherd.github.io/vox/func_docs/)
+
