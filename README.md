@@ -4,7 +4,7 @@
 
 ## [Documentation](https://lukemshepherd.github.io/vox/)
 
-## [Install](https://lukemshepherd.github.io/vox/install/)
+## [Installation](https://lukemshepherd.github.io/vox/install/)
 
 ## How to use
 
