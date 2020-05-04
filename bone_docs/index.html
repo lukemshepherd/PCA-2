@@ -85,6 +85,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#dense">.dense()</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#xyz_to_arrayself">xyz_to_array(self)</a>
+    </li>
     </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../func_docs/">Functions</a>
@@ -156,7 +158,9 @@ returns:    self.pc1
 <p><code>PCA</code> (boolean): plots the PCAs of the voxel</p>
 <p><code>PCA_inv</code> (boolean): plots the inverse of each PCA so the axes go in both directions</p>
 <h2 id="dense"><code>.dense()</code></h2>
-<p>up-scales the bone </p>
+<p>scales the voxel data array by <code>scale_factor</code></p>
+<h2 id="xyz_to_arrayself"><code>xyz_to_array(self)</code></h2>
+<p>Creates a numpy voxel array (256,256,256) from <code>.xyz</code> attribute.</p>
               
             </div>
           </div>
