@@ -119,22 +119,42 @@ dependencies:
   - zlib=1.2.11=h7b6447c_3
   - pip:
     - apptools==4.5.0
+    - colorama==0.4.3
     - configobj==5.0.6
     - cycler==0.10.0
     - envisage==4.9.2
-    - jupyterthemes==0.20.0
+    - future==0.18.2
+    - gitdb==4.0.4
+    - gitpython==3.1.1
+    - ipywidgets==7.5.1
+    - jupyterlab-git==0.10.1
     - kiwisolver==1.2.0
     - lesscpy==0.14.0
+    - livereload==2.6.1
+    - lunr==0.5.6
+    - markdown==3.2.1
     - matplotlib==3.2.1
     - mayavi==4.7.1
+    - mkdocs==1.1
+    - mkdocs-bootstrap==1.1
+    - mkdocs-jupyter==0.11.0
+    - nbdime==1.1.0
+    - nltk==3.5
     - numpy==1.18.3
+    - numpy-stl==2.11.2
+    - open3d==0.9.0.0
+    - pillow==7.1.2
     - ply==3.11
     - pyface==6.1.2
     - pyparsing==2.4.7
     - pyqt5==5.14.2
     - pyqt5-sip==12.7.2
+    - python-utils==2.4.0
+    - pyyaml==5.3.1
+    - smmap==3.0.2
     - traits==6.0.0
     - traitsui==6.1.3
     - vtk==8.1.2
+    - widgetsnbextension==3.5.1
 prefix: /home/luke/miniconda3/envs/vox
 
