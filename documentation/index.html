@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Documentation - Vox</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Documentation";
+    var mkdocs_page_input_path = "documentation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Vox</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../install/">Installing</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../get_started/">Getting started</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stl/">STL objects</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../interpolation/">Interpolation</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Documentation</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../bone_docs/">Bone class methods</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../func_docs/">Functions</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Vox</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Documentation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="documentation">Documentation</h1>
+<h2 id="bone-class-methods">Bone class methods:</h2>
+<h3 id="get_xyz"><code>.get_xyz()</code></h3>
+<p>Convert 3D voxel array to xyz coordinates.</p>
+<pre><code>array (np.array): 3D voxel array
+</code></pre>
+<p><code>filter_level</code> (int/float): (inherited from <code>bone</code> class) sets the threshold level for what is considered a voxel. Everything below filter level is rounded to 0, everything above rounded to 1 (ie voxel)</p>
+<pre><code>returns: 
+    np.array( [n x 3] )
+</code></pre>
+<h3 id="get_pca"><code>.get_pca()</code></h3>
+<p>Performs PCA on the xyz points array</p>
+<pre><code>xyz(np.array): n x 3 array of xyz coordinates
+
+returns:    self.pc1
+            self.pc2
+            self.pc3
+</code></pre>
+<h3 id="get_mean"><code>.get_mean()</code></h3>
+<p>Gets the mean xyz coordinates for xyz array </p>
+<h3 id="center_to_origin"><code>.center_to_origin()</code></h3>
+<p>Sets the mean of the bone to (0,0,0)</p>
+<h3 id="reset_position"><code>.reset_position()</code></h3>
+<p>Returns bone to original position in space</p>
+<h3 id="plot"><code>.plot()</code></h3>
+<p>Plot voxels with optional PCA, and colours</p>
+<p><code>user_color</code> (tuple): RGB color of the bone where 1 is maxium eg: red = (1,0,0)</p>
+<p><a href="https://www.colortools.net/color_mixer.html">www.colortools.net/color_mixer.html</a> is a good tool to work out what the best colour to use is.</p>
+<p><code>PCA</code> (boolean): plots the PCAs of the voxel</p>
+<p><code>PCA_inv</code> (boolean): plots the inverse of each PCA so the axes go in both directions</p>
+<h3 id="dense"><code>.dense()</code></h3>
+<p>scales the voxel data array by <code>scale_factor</code></p>
+<h2 id="xyz_to_arrayself"><code>xyz_to_array(self)</code></h2>
+<p>Creates a numpy voxel array (256,256,256) from <code>.xyz</code> attribute.</p>
+<h1 id="functions">Functions</h1>
+<h2 id="magv"><code>mag(v)</code></h2>
+<p><code>v</code> = vector (np.array 1x3)</p>
+<p>Finds magnitude of vector</p>
+<h3 id="angle-v1-v2"><code>angle (v1, v2)</code></h3>
+<p><code>v1 / v2</code> = vector (np.array 1x3)</p>
+<p>Finds the angel between two vectors</p>
+<h3 id="quaternion_rotation_from_anglev-c_axis-theta"><code>quaternion_rotation_from_angle(v, c_axis, theta)</code></h3>
+<p><code>v</code> = vector (np.array 1x3)</p>
+<p><code>c_axis</code> = cross product between two principle conponets </p>
+<p><code>theta</code> = angle of rotation (radians) </p>
+<h3 id="rotatebone_f1-bone_f2-interpolatefalse-scale_factor2"><code>rotate(bone_f1, bone_f2, interpolate=False, scale_factor=2)</code></h3>
+<p>Aligns and rotates bone_f1 to bone_f2</p>
+<p><code>bone_f1 / bone_f2</code> = bone class object</p>
+<p><code>interpolate</code> = (boolean) if <code>True</code> bone_f1 is upscaled, rotated and downscaled to increase point density.</p>
+<p><code>scale_factor</code> = set how much the bone will be upscaled to increase the density.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
