@@ -2,9 +2,13 @@
 
 ## `mag(v)`
 
+`v` = vector (np.array 1x3)
+
 Finds magnitude of vector
 
-## `angle (vector1, vector2)`
+## `angle (v1, v2)`
+
+`v1 / v2` = vector (np.array 1x3)
 
 Finds the angel between two vectors
 
@@ -18,9 +22,9 @@ Finds the angel between two vectors
 
 ## `rotate(bone_f1, bone_f2, interpolate=False, scale_factor=2)`
 
-Alines and rotates bone_f1 to bone_f2
+Aligns and rotates bone_f1 to bone_f2
 
-`bone` = bone class object
+`bone_f1 / bone_f2` = bone class object
 
 `interpolate` = (boolean) if `True` bone_f1 is upscaled, rotated and downscaled to increase point density.
 

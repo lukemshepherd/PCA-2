@@ -8,7 +8,7 @@ If you use conda environments this is probably the quickest way to install depen
 
     $ conda activate vox
 
-## Installing dependencies
+## Installing packages
 
 ### Python
 Python 3.6 and higher
