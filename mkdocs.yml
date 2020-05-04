@@ -5,7 +5,7 @@ nav:
 - Getting started: get_started.md
 - STL objects: stl.md 
 - Interpolation: interpolation.md
-- Documentation:documentation.md
+- Documentation: documentation.md
   # - Bone class methods: bone_docs.md
   # - Functions: func_docs.md
 
