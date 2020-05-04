@@ -1,3 +1,4 @@
 *.ipynb linguist-detectable=false
 *.py linguist-detectable=true
 *.js linguist-detectable=false
+*.htlm linguist-detectable=false
