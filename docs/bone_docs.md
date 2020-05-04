@@ -42,4 +42,7 @@ Plot voxels with optional PCA, and colours
 
 
 ## `.dense()`
-up-scales the bone 
+scales the voxel data array by `scale_factor`
+
+## `xyz_to_array(self)`
+Creates a numpy voxel array (256,256,256) from `.xyz` attribute.

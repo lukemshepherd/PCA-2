@@ -11,7 +11,7 @@ from mayavi import mlab
 import quaternion as quat
 from sklearn.decomposition import PCA
 
-# bone class:
+# Bone class:
 class bone:
 
     filter_level = 0.001
@@ -185,16 +185,17 @@ class bone:
 
         self.get_xyz()
 
-    def xyz_to_array(self):
-        vx_array = np.zeros((256, 256, 256), dtype=bool)
+    def xyz_to_array(self, array_dim=(256, 256, 256)):
+        vx_array = np.zeros(array_dim, dtype=bool)
 
         for i in self.xyz:
-            if np.allclose(i, np.around(i), rtol=0.01, equal_nan=True):
+            if np.allclose(i, np.around(i), rtol=0.5, equal_nan=True):
                 vx_array[tuple(np.around(i).astype(int))] = True
 
         x = np.count_nonzero(vx_array) / self.xyz.shape[0]
 
         print(f"{x*100}% reconstructed")
+
         return vx_array
 
     @classmethod
@@ -230,8 +231,6 @@ class bone:
 
 
 # Functions:
-
-
 def mag(v):
     """ Finds magnitude of vector
 
@@ -330,6 +329,10 @@ def rotate(bone_f1, bone_f2, interpolate=False, scale_factor=2):
 
         setattr(bone_f1, "xyz", rotated_xyz)
 
+    bone_f1.reset_position()
+    bone_f2.reset_position()
+
+    # reduce bone to orginal size
     if interpolate is True:
         print(f"scalling bone by {1/scale_factor}")
         bone_f1.scale(1 / scale_factor)
