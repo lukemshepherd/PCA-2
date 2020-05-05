@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-# bone_move
 
-=======
 # Vox
->>>>>>> 1880ea1641d4e38e50095a0b0277d0b3d08775a6
 ![bone_image](docs/images/non_alined.png)
 
 ## [Documentation](https://lukemshepherd.github.io/vox/)
