@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name="bone_move",
+    name="bone_cast",
     version="0.1.0",
     description="Package for rotating, aligning and plotting voxel and stl (bone) objects",
     url="http://github.com/lukemshepherd/vox",
     author="Luke M Shepherd",
     author_email="l.m.shepherd@outlook.com",
     license="MIT",
-    packages=["bone_move"],
+    packages=["bone_cast"],
     install_requires=[
         "numpy",
         "pandas",
