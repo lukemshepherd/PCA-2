@@ -1,4 +1,4 @@
-# Vox
+# bone_move
 
 ![bone_image](docs/images/non_alined.png)
 
