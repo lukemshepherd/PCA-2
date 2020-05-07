@@ -54,9 +54,13 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Installing</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#clone-conda-environment">Clone conda environment</a>
+    <li class="toctree-l2"><a class="reference internal" href="#clone-git-repo">Clone git repo</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installing-packages">Installing packages</a>
+    <li class="toctree-l2"><a class="reference internal" href="#create-conda-environment">Create conda environment</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#create-vox-package">Create vox package</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installing-packages-individually">Installing packages individually</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#python">Python</a>
     </li>
@@ -120,13 +124,20 @@
             <div class="section">
               
                 <h1 id="how-to-install">How to install</h1>
-<h2 id="clone-conda-environment">Clone conda environment</h2>
-<p>If you use conda environments this is probably the quickest way to install dependencies is to update/ create an environment from my <code>enviroment.yml</code> file. This will install all of the required packages.</p>
+<h3 id="clone-git-repo">Clone git repo</h3>
+<pre><code>$ git pull https://github.com/lukemshepherd/vox.git
+
+$ cd vox
+</code></pre>
+<h3 id="create-conda-environment">Create conda environment</h3>
 <pre><code>$ conda env create -f environment.yml
 
 $ conda activate vox
 </code></pre>
-<h2 id="installing-packages">Installing packages</h2>
+<h3 id="create-vox-package">Create vox package</h3>
+<pre><code>$ pip install -e .
+</code></pre>
+<h2 id="installing-packages-individually">Installing packages individually</h2>
 <h3 id="python">Python</h3>
 <p>Python 3.6 and higher</p>
 <h3 id="mayavi">mayavi</h3>
