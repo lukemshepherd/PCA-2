@@ -1,14 +1,24 @@
 # How to install
 
-## Clone conda environment
+### Clone git repo
 
-If you use conda environments this is probably the quickest way to install dependencies is to update/ create an environment from my `enviroment.yml` file. This will install all of the required packages.
+    $ git pull https://github.com/lukemshepherd/vox.git
+
+    $ cd vox 
+
+
+### Create conda environment 
 
     $ conda env create -f environment.yml
 
     $ conda activate vox
 
-## Installing packages
+### Create vox package    
+
+    $ pip install -e .
+
+
+## Installing packages individually 
 
 ### Python
 Python 3.6 and higher
