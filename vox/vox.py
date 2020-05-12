@@ -266,8 +266,8 @@ def angle(v1, v2):
 
 def quaternion_rotation_from_angle(v, c_axis, theta):
 
-    rotation_axis = np.array([0.0] + c_axis)
-    axis_angle = (theta * 0.5) * rotation_axis / np.linalg.norm(rotation_axis)
+    rotation_axis = np.array([0.] + c_axis)
+    axis_angle = (theta*0.5) * rotation_axis/np.linalg.norm(rotation_axis)
 
     vec = quat.quaternion(*v)
 
@@ -278,15 +278,24 @@ def quaternion_rotation_from_angle(v, c_axis, theta):
     # double cover quaternion rotation
     v_prime = q * vec * np.conjugate(q)
 
+    return v_prime.imag , q
+
+
+def quaternion_rotation_from_quaternion(v, q):
+    # double cover quaternion rotation
+    vec = quat.quaternion(*v)
+    
+    v_prime = q * vec * np.conjugate(q)
+    
     return v_prime.imag
 
 
-def rotate(bone_f1, bone_f2, interpolate=False, scale_factor=2):
+def rotate(bone_f1, bone_f2, interpolate = False, scale_factor= 2):
 
-    if interpolate is True:
-        print(f"scalling bone by {scale_factor}")
+    if interpolate is True: 
+        print(f'scalling bone by {scale_factor}')
         bone_f1.scale(scale_factor)
-
+    
     # center bones too 0,0,0,
     bone_f1.center_to_origin()
     bone_f2.center_to_origin()
@@ -300,49 +309,55 @@ def rotate(bone_f1, bone_f2, interpolate=False, scale_factor=2):
 
         # takes cross product axis
         cross_product_axis = np.cross(
-            getattr(bone_f1, f"pc{n}"), getattr(bone_f2, f"pc{n}")
-        )
+            getattr(bone_f1, f'pc{n}'),
+            getattr(bone_f2, f'pc{n}'))
 
         # finds angle between PCs for f1 vs f2
-        theta, vector = angle(getattr(bone_f1, f"pc{n}"), getattr(bone_f2, f"pc{n}"))
+        theta, vector = angle(
+            getattr(bone_f1, f'pc{n}'),
+            getattr(bone_f2, f'pc{n}'))
 
         # sets any new values needed
-        setattr(bone_f1, f"pc{n}", vector)
+        setattr(bone_f1, f'pc{n}', vector)
 
         # rotates each PC
         for n in range(1, 4):
-            transformed_pc = quaternion_rotation_from_angle(
-                v=getattr(bone_f1, f"pc{n}"), c_axis=cross_product_axis, theta=theta
-            )
-
+            transformed_pc, q = quaternion_rotation_from_angle(
+                v=getattr(bone_f1, f'pc{n}'),
+                c_axis=cross_product_axis,
+                theta=theta)
+            
+            if hasattr(bone_f1,'q_prod') == True:
+                bone_f1.q_prod = bone_f1.q_prod * q
+                
+            else:
+                setattr(bone_f1,'q_prod', q)
+                
             # sets new PCA
-            setattr(bone_f1, f"pc{n}", transformed_pc)
+            setattr(bone_f1, f'pc{n}', transformed_pc)
 
-        # rotates xyz array with the quaterion product
-        rotated_xyz = np.apply_along_axis(
-            quaternion_rotation_from_angle,
-            1,
-            getattr(bone_f1, "xyz"),
-            c_axis=cross_product_axis,
-            theta=theta,
-        )
 
-        setattr(bone_f1, "xyz", rotated_xyz)
+    # rotates xyz array with the quaterion product
+    rotated_xyz = np.apply_along_axis(
+        quaternion_rotation_from_quaternion,1, 
+        getattr(bone_f1, 'xyz'),
+        bone_f1.q_prod)
+        
+    setattr(bone_f1, 'xyz', rotated_xyz)
 
     bone_f1.reset_position()
     bone_f2.reset_position()
 
-    # reduce bone to orginal size
-    if interpolate is True:
-        print(f"scalling bone by {1/scale_factor}")
-        bone_f1.scale(1 / scale_factor)
+    # reduce bone to orginal size 
+    if interpolate is True: 
+        print(f'scalling bone by {1/scale_factor}')
+        bone_f1.scale(1/scale_factor)   
+        
 
-    if bone_f1.dtype is "stl":
+    if bone_f1.dtype is 'stl':
 
-        # update internal data
-        bone_f1.data.v0, bone_f1.data.v1, bone_f1.data.v2 = np.array_split(
-            bone_f1.xyz, 3
-        )
+        #update internal data
+        bone_f1.data.v0 , bone_f1.data.v1, bone_f1.data.v2 = np.array_split(bone_f1.xyz, 3)
         bone_f1.data.update_normals()
 
 
