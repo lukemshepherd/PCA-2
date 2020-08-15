@@ -31,7 +31,7 @@ Plotting with mayavi is very similar to matplotplib where you build a scene and 
 
 You can plot bones by calling the `.plot()` method and then `mlab.show()`
 
-![rotated_image](/images/alined.png)
+![rotated_image](docs/images/alined.png)
 
 
 ## 4. Table of angles
