@@ -25,16 +25,16 @@ class bone:
         what is considered a voxel. Everything below filter level is
         rounded to 0, everything above rounded to 1 (ie voxel)
         """
-
+        
         self.dtype = dtype
         self.data = data
-
+        
         self.get_xyz()
 
+                
+        
     def get_xyz(self):
-        """Convert 3D voxel array to xyz coordinates.
-
-        array (np.array): 3D voxel array  
+        """Convert 3D voxel array or STL to xyz coordinates.
 
         filter_level (int/float): (inherited from `bone` class) sets the threshold level for 
         what is considered a voxel. Everything below filter level is
@@ -43,8 +43,9 @@ class bone:
         returns: 
             np.array( [n x 3] )"""
 
-        if self.dtype == "voxel":
-
+        
+        if self.dtype == 'voxel':
+        
             # Everything above filter level is converted to 1
             filtered_array = np.where(self.data < self.filter_level, 0, 1)
 
@@ -52,12 +53,14 @@ class bone:
             x, y, z = np.where(filtered_array == 1)
 
             self.xyz = np.array([x, y, z]).T
+            
+            
+        elif self.dtype == 'stl':
+            self.xyz = np.concatenate((self.data.v0,
+                                         self.data.v1,
+                                         self.data.v2), axis=0)
 
-        elif self.dtype == "stl":
-            self.xyz = np.concatenate(
-                (self.data.v0, self.data.v1, self.data.v2), axis=0
-            )
-
+                
     def get_pca(self):
         """PCA on the xyz points array
 
@@ -67,40 +70,39 @@ class bone:
                         self.pc2
                         self.pc3"""
 
-        pca = PCA(svd_solver="full")
+        pca = PCA(svd_solver='full')
         pca.fit(self.xyz)
-
+         
         self.pca_list = pca.components_
         self.pc1 = pca.components_[0]
         self.pc2 = pca.components_[1]
         self.pc3 = pca.components_[2]
 
-    def get_mean(self):
-        """The mean of the xyz atriube
-
+   
+    
+    @property
+    def mean(self):
+        """The mean of the xyz atriube 
             returns:
-                tupple (mean_of_x, mean_of_y ,mean_of_z)"""
+            tupple (mean_of_x, mean_of_y ,mean_of_z)"""
+    
+        return (np.mean(self.xyz[:, 0]), np.mean(self.xyz[:, 1]), np.mean(self.xyz[:, 2]))
 
-        # mean_x, mean_y, mean_z
-        return (
-            np.mean(self.xyz[:, 0]),
-            np.mean(self.xyz[:, 1]),
-            np.mean(self.xyz[:, 2]),
-        )
 
     def center_to_origin(self):
         """ sets the mean of the bone to 0,0,0"""
 
         # set transformation (tfm) value
-        self.tfm = self.get_mean()
+        self.tfm = self.mean
 
-        self.xyz = self.xyz - self.tfm
+        self.xyz = self.xyz - self.mean
 
     def reset_position(self):
         """ resets the position of the bone to its orginal one"""
         self.xyz = self.xyz + self.tfm
 
-    def plot(self, user_color=None, PCA_inv=None, PCA=True):
+
+    def plot(self, user_color=None, mesh=False, PCA_inv=False, PCA=True):
         """ Plot voxels with optional PCA, and colours
         
             user_color (tupple): RGB color of the bone where 1 is maxium
@@ -110,93 +112,71 @@ class bone:
             
             PCA_inv (boolean): plots the inverse of each PCA so the axes go in both directions
         """
-
-        if hasattr(self, "pc1") is False:
+                
+        if hasattr(self, 'pc1') is False:
             self.get_pca()
-
-        x, y, z = self.get_mean()
-
+        
+    
         if user_color is None:
             user_color = self.default_color
+            
+            
+            
+        if mesh is False:
+            #plots points
+            mlab.points3d(self.xyz[:, 0],
+                          self.xyz[:, 1],
+                          self.xyz[:, 2],
+                          mode = "cube",
+                          color= user_color,
+                          scale_factor = 1)  
+            
+        else:
+             mlab.mesh(self.data.x, self.data.y, self.data.z)
+        
 
-        if self.dtype == "voxel":
-            # plots voxels
-            mlab.points3d(
-                self.xyz[:, 0],
-                self.xyz[:, 1],
-                self.xyz[:, 2],
-                mode="cube",
-                color=user_color,
-                scale_factor=1,
-            )
+        def quiver_pca(n,i):
+            mlab.quiver3d(*self.mean, *(getattr(self,f'pc{n}')*i),
+                                  line_width=6,
+                                  scale_factor=100/n,
+                                  color=c)
 
-        elif self.dtype == "stl":
-            mlab.points3d(
-                self.xyz[:, 0], self.xyz[:, 1], self.xyz[:, 2], color=user_color
-            )
-
-        # plots pca arrows
-        if PCA is True:
-
-            mlab.quiver3d(
-                x, y, z, *self.pc1, line_width=6, scale_factor=100, color=(1, 0, 0)
-            )
-            mlab.quiver3d(
-                x, y, z, *self.pc2, line_width=6, scale_factor=50, color=(0, 1, 0)
-            )
-            mlab.quiver3d(
-                x, y, z, *self.pc3, line_width=6, scale_factor=30, color=(0, 0, 1)
-            )
-
-        # plots the pca *-1
-        if PCA_inv is True:
-
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                *(self.pc1 * -1),
-                line_width=6,
-                scale_factor=100,
-                color=(1, 0, 0),
-            )
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                *(self.pc2 * -1),
-                line_width=6,
-                scale_factor=50,
-                color=(0, 1, 0),
-            )
-            mlab.quiver3d(
-                x,
-                y,
-                z,
-                *(self.pc3 * -1),
-                line_width=6,
-                scale_factor=30,
-                color=(0, 0, 1),
-            )
-
+        for n in range(1,4):
+            #sets color
+            c = [0,0,0]
+            c[n-1] = 1
+            c = tuple(c)
+            
+            # plots pca arrows
+            if PCA is True:
+                quiver_pca(n,1)
+                
+            #plots the pca *-1      
+            if PCA_inv is True:
+                quiver_pca(n,-1)
+            
+        
     def scale(self, n):
         """ up-scales the bone """
         self.data = zoom(self.data, (n, n, n))
-
+        
+        #update xyz
         self.get_xyz()
-
-    def xyz_to_array(self, array_dim=(256, 256, 256)):
-        vx_array = np.zeros(array_dim, dtype=bool)
-
+            
+            
+    def xyz_to_array(self,array_dim=(256,256,256)):
+        vx_array = np.zeros(array_dim,dtype=bool)
+    
         for i in self.xyz:
-            if np.allclose(i, np.around(i), rtol=0.5, equal_nan=True):
+            if np.allclose(i, np.around(i), rtol= 0.5, equal_nan=True):
                 vx_array[tuple(np.around(i).astype(int))] = True
-
-        x = np.count_nonzero(vx_array) / self.xyz.shape[0]
-
-        print(f"{x*100}% reconstructed")
-
+                
+        x = np.count_nonzero(vx_array)/self.xyz.shape[0]
+        
+        print(f'{x*100}% reconstructed')
+        
         return vx_array
+
 
     @classmethod
     def from_matlab_path(cls, matlab_file):
@@ -228,8 +208,7 @@ class bone:
         data = mesh.Mesh.from_file(stl_file)
 
         return cls(data, dtype="stl")
-
-
+        
 # Functions:
 def mag(v):
     """ Finds magnitude of vector
@@ -359,7 +338,6 @@ def rotate(bone_f1, bone_f2, interpolate = False, scale_factor= 2):
         #update internal data
         bone_f1.data.v0 , bone_f1.data.v1, bone_f1.data.v2 = np.array_split(bone_f1.xyz, 3)
         bone_f1.data.update_normals()
-
 
 def df_angles(bone_f1, bone_f2, name="UN-NAMED BONE"):
     """
