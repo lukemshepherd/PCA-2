@@ -1,4 +1,5 @@
-# bone_move
+# PCA^2
+*Point Cloud Alignment with PCA*
 
 ![bone_image](docs/images/non_alined.png)
 
