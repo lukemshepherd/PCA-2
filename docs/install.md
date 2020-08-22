@@ -6,7 +6,7 @@ If you use conda environments this is probably the quickest way to install depen
 
     $ conda env create -f environment.yml
 
-    $ conda activate vox
+    $ conda activate PCA^2
 
 ## Installing packages
 
