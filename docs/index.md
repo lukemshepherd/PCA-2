@@ -1,4 +1,4 @@
-#PCA^2
+# PCA^2
 *Point Cloud Alignment with PCA*
 
 This is a package for rotating, aligning and plotting voxel or stl bone objects.
