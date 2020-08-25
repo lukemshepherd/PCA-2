@@ -2,7 +2,7 @@
 
 ### Clone git repo
 
-    $ git pull https://github.com/lukemshepherd/vox.git
+    $ git pull https://github.com/lukemshepherd/PCA-2.git
 
     $ cd PCA-2 
 
