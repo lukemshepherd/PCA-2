@@ -13,7 +13,7 @@
 
     $ conda activate PCA-2
 
-### Create vox package    
+### Create PCA-2 package    
 
     $ pip install -e .
 
