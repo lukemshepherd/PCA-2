@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+# PCA^2
+*Point Cloud Alignment with PCA*
+>>>>>>> 35409e49361ce24494ea4506a39098928bd7d02d
 
 # Vox
 ![bone_image](docs/images/non_alined.png)
@@ -31,7 +36,7 @@ Plotting with mayavi is very similar to matplotplib where you build a scene and 
 
 You can plot bones by calling the `.plot()` method and then `mlab.show()`
 
-![rotated_image](/images/alined.png)
+![rotated_image](docs/images/alined.png)
 
 
 ## 4. Table of angles

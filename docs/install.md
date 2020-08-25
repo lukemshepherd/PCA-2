@@ -11,7 +11,7 @@
 
     $ conda env create -f environment.yml
 
-    $ conda activate vox
+    $ conda activate PCA^2
 
 ### Create vox package    
 

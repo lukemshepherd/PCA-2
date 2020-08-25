@@ -1,4 +1,4 @@
-name: vox
+name: PCA^2
 channels:
   - anaconda
   - conda-forge
