@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 # PCA^2
 *Point Cloud Alignment with PCA*
->>>>>>> 35409e49361ce24494ea4506a39098928bd7d02d
 
 # Vox
 ![bone_image](docs/images/non_alined.png)
