@@ -1,7 +1,6 @@
 # PCA-2
 *Point Cloud Alignment with PCA*
 
-# Vox
 ![bone_image](docs/images/non_alined.png)
 
 ## [Documentation](https://lukemshepherd.github.io/PCA-2/)
