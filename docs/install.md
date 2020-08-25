@@ -4,14 +4,14 @@
 
     $ git pull https://github.com/lukemshepherd/vox.git
 
-    $ cd vox 
+    $ cd PCA-2 
 
 
 ### Create conda environment 
 
     $ conda env create -f environment.yml
 
-    $ conda activate PCA^2
+    $ conda activate PCA-2
 
 ### Create vox package    
 

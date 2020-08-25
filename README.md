@@ -4,9 +4,9 @@
 # Vox
 ![bone_image](docs/images/non_alined.png)
 
-## [Documentation](https://lukemshepherd.github.io/vox/)
+## [Documentation](https://lukemshepherd.github.io/pca-2/)
 
-## [Installation](https://lukemshepherd.github.io/vox/install/)
+## [Installation](https://lukemshepherd.github.io/pca-2/install/)
 
 ## How to use
 
